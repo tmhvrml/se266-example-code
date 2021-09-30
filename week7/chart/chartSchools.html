@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <title>School Count</title>
+</head>
+<body>
+  <div class="container">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script>
+   // Bar chart
+
+  </script>
+</body>
+</html>
+
+<script>
+    
+    (function() {
+    
+  
+  
+
+  async function makeRequest() {
+    const url = 'schools.php';
+    
+    try {
+      const response = await fetch(url, {
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      const schools = await response.json();
+      console.log (schools);
+      new Chart(document.getElementById("myChart"), {
+                type: 'bar',
+                data: {
+                  labels: schools[0],
+                  datasets: [
+                    {
+                      label: "Number of Schools",
+                      backgroundColor: schools[2],
+                      data: schools[1],
+                      borderWidth: 10
+                    }
+                  ]
+                },
+                options: {
+                  legend: { display: true },
+                  title: {
+                    display: true,
+                    text: 'Number of Schools By State'
+                  },
+                  scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero:true
+                            }
+                        }]
+                    }
+                }
+            });
+      
+    } catch (error) {
+        console.error (error);
+     
+    }
+  }
+  makeRequest();
+  
+    })();
+    
+ 
+ </script>
