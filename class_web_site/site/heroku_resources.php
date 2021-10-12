@@ -1,5 +1,5 @@
 
- <?php include __DIR__ . '/../include/header.php'; ?>
+ <?php include __DIR__ . '../include/header.php'; ?>
     
     
       <h2>Heroku Resources</h2>
@@ -10,4 +10,4 @@
       </ul> 
        
         
-<?php include __DIR__ . '/../include/footer.php'; ?>
+<?php include __DIR__ . '../include/footer.php'; ?>
