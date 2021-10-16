@@ -1,7 +1,7 @@
 <?php
     /*
         class Person
-        Note that properties should always be private or protected and never be accessed directly
+        Note that properties should always be private and never be accessed directly
         $this keyword refers to the current object
         __construct is for the constructor - function gets called when instantiating a new object
     */
