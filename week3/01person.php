@@ -6,7 +6,8 @@
         __construct is for the constructor - function gets called when instantiating a new object
     */
 class Person {
-    private $first, $last;
+    private $first;
+    private $last;
 
     public function __construct ($f, $l) {
         $this->first = $f;
