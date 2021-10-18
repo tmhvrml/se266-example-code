@@ -5,7 +5,8 @@
         Note how the variable is referenced using self:: within the class and then Person:: outside of the class
     */
 class Person {
-    private $first, $last;
+    private $first;
+    private $last;
     private static $objectCount=0;
 
     public function __construct ($f, $l) {
