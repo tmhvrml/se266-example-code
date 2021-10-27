@@ -82,7 +82,7 @@
     $stmt = $db->prepare("SELECT id FROM users WHERE userName =:userName AND userPassword = :password");
 
     $stmt->bindValue(':userName', $userName);
-    $stmt->bindValue(':password', sha1($password));
+    $stmt->bindValue(':password', sha1("school-salt".$password));
     
     $stmt->execute ();
    
