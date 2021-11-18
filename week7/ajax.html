@@ -10,28 +10,33 @@
   </style>
   <script>
 
-      async function makeRequest() {
-      const url = 'ajax.php';
-      const data = { user_name1: 'Super Man', user_name2: 'Wonder Woman' };
+    async function makeRequest() {
+        // The URL of the PHP router and JSON to pass    
+         let url = 'ajax.php';
+         let data = { user_name1: 'Super Man', user_name2: 'Wonder Woman' };
 
-      try {
-        const response = await fetch(url, {
-          method: 'POST', 
-          body: JSON.stringify(data), 
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-        const json = await response.json();
-        
-        //document.getElementById("resultDiv").innerHTML = JSON.stringify(json);
-        document.getElementById("resultDiv").innerHTML = json;
-        
-        console.log(json);
-      } catch (error) {
-          console.error (error);
-       
-      }
+        // Use POST to fetch the URL and wait for a response
+        try {
+             let response = await fetch(url, {
+                method: 'POST', 
+                body: JSON.stringify(data), 
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            // Parse the response into a JSON array        
+            let jsonResponse = await response.json();
+
+            // Assign the response into a DOM object
+            document.getElementById("resultDiv").innerHTML = jsonResponse;
+
+            // Display in console for error checking
+            console.log(json);
+            
+        } catch (error) {
+            console.error(error);
+        }
     }
 
   </script>
