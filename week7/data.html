@@ -9,6 +9,13 @@ and open the template in the editor.
         <title>JavaScript data Attribute</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+              function insertVote() {
+                 
+                  alert( this.dataset.characterId);
+              }
+          </script>
+            
     </head>
     <body>
         <div style="margin-left:50px; margin-top:50px;">
@@ -26,12 +33,7 @@ and open the template in the editor.
      document.querySelectorAll('.btn').forEach(item => {
         item.addEventListener('click', insertVote);
       })
-      
-      function insertVote() {
          
-          alert( this.dataset.characterId);
-      }
-   
 })();
 
 </script>
