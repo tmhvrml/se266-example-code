@@ -28,6 +28,7 @@
        <table border="1" cellpadding="5">
 
         <?php 
+            // Using constants instead of magic numbers is best.
             define("ROWS", 15);
             define("COLS", 8);
             
