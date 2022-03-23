@@ -16,8 +16,9 @@
 <body>
 <div class="container">
      <div class="col-sm-offset-2 col-sm-10">
-     <h3><a href="addTeam.php">Add Team</a></h3>
+     
    <h1>NFL Teams</h1>
+   <p><a href="addTeam.php">Add Team</a></p>
    <table class="table table-striped">
         <thead>
             <tr>

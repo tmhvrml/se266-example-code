@@ -23,10 +23,10 @@
 
 <body>
 <div class="container">
-<div class="col-sm-offset-2 col-sm-10"><h3><a href="./view.php">View Teams</a></h3></div>
+
 
   <h1>Add Team</h1>
-
+  <div class="col-sm-offset-1 col-sm-10"><p><a href="./view.php">View Teams</a></p></div>
   <form class="form-horizontal" action="addTeam.php" method="post">
     <div class="form-group">
       <label class="control-label col-sm-2" for="team name">Team Name:</label>
