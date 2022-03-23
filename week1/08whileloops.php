@@ -34,21 +34,21 @@
         <tr>
 
         <?php
-            
+            // In the future, code like this is best placed in a function
             $balance = 1000;
             $apr = 17.99;
             $monthlyPayment = 100;
             $month = 1;
             $totalInterestPaid = 0;
             while ($balance>0) {
-                $interestPaid = $balance * $apr/12/100;
+                $interestPaid = $balance * $apr / 12 / 100;
                 $totalInterestPaid += $interestPaid;
                 $balance = $balance + $interestPaid - $monthlyPayment;
                 if ($balance < 0) $balance=0;
         ?>
             <tr>
                 <td><?= $month; ?></td>
-                <td><?php echo "$" .number_format($interestPaid, 2); ?></td>
+                <td><?php echo "$" . number_format($interestPaid, 2); ?></td>
                 <td><?php echo "$" . number_format($balance, 2); ?></td>
                 
             </tr>
@@ -60,8 +60,6 @@
         <p>
             Total amount of interest paid: <?php echo "$" . number_format($totalInterestPaid, 2); ?>
         </p>
-
-
 
     <table>
         <tr>
@@ -82,14 +80,13 @@
                 $totalInterestPaid += $interestPaid;
                 $balance = $balance + $interestPaid - $monthlyPayment;
                 if ($balance < 0) $balance=0;
-        ?>
+            ?>
             <tr>
                 <td><?php echo $month; ?></td>
                 <td><?php echo "$" .number_format($interestPaid, 2); ?></td>
                 <td><?php echo "$" . number_format($balance, 2); ?></td>
-                
             </tr>
-        <?php
+            <?php
                 $month++;
             } while($balance>0);
         ?>

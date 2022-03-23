@@ -47,5 +47,5 @@
         echo "Call printLocalNumberAndTryToChangeIt. The variable a: $a<br />";
     }
 
-    include '10functions_inc.php';
+  //  include '10functions_example.php';
 ?>

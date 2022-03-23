@@ -6,6 +6,7 @@
     </head>
     <body>
         <?php
+        // Try this code with different values for $a and $b
         $a = 0;
         $b = false;
         $value = 'foo';
@@ -33,14 +34,10 @@
             <p><?php echo $value; ?></p>
         <?php endif; ?>
 
-
-
         <?php
-       
         $expression = false;
         ?>
-
-
+        
         <?php if ($expression == true): ?>
             This will show if the expression is true.
         <?php elseif ($expression == 10): ?>

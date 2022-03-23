@@ -1,3 +1,5 @@
+<?php   include '10functions.php';
+?>
 <!DOCTYPE html>
 <html>
     <head>

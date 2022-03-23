@@ -7,20 +7,21 @@
     <body>
         <h1>Concatenate Strings</h1>
         <?php
-            $myvar = 'hello';
+        // Observer the output from each echo statement below
+            $myvar1 = 'hello';
             $myvar2 = 'world';
         ?>
         
         <p>
-            <?php echo $myvar . ' ' . $myvar2; ?>
+            <?php echo $myvar1 . ' ' . $myvar2; ?>
         </p>
 
         <p>
-            <?php echo "$myvar $myvar2"; ?>
+            <?php echo "$myvar1 $myvar2"; ?>
         </p>
 
         <p>
-            <?php echo '$myvar $myvar2'; ?>
+            <?php echo '$myvar1 $myvar2'; ?>
         </p>
 
         
