@@ -12,28 +12,29 @@ class Person {
     public function __construct ($firstArg, $lastArg) {
         $this->first = $firstArg;
         $this->last = $lastArg;
-    }
+    } // end constructor
 
     public function setFirst ($firstArg) {
         $this->first = $firstArg;
-    }
+    } // end setFirst
 
     public function setLast ($lastArg) {
         $this->last = $lastArg;
-    }
+    } // end setLast
 
     public function getFirst () {
         return $this->first;
-    }
+    } // end getFirst
 
     public function getLast () {
         return $this->last;
-    }
+    } // end getLast
 
     public function getFullName () {
         return $this->first . " " . $this->last;
-    }
-}
+    } // end getFullName
+    
+} // end person
 
 // The code below runs everytime this class loads and 
 // should be commented out after testing.

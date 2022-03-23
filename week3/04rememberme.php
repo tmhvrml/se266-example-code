@@ -1,7 +1,8 @@
 <?php
+
+// The code below runs everytime this page loads
     if (isset($_POST['addAmount'])) {
         $addAmount = filter_input (INPUT_POST, 'additionalAmount');
-     
         $amount = filter_input (INPUT_POST, 'amount');
         $amount += $addAmount;
         //echo $amount;

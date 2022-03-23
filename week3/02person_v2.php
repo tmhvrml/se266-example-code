@@ -14,32 +14,33 @@ class Person {
         $this->last = $lastArg;
 
         self::$objectCount++;
-    }
+    } // end constructor
 
     public function setFirst ($firstArg) {
         $this->first = $firstArg;
-    }
+    } // end setFirst
 
     public function setLast ($lastArg) {
         $this->last = $lastArg;
-    }
+    } // end setLast
 
     public function getFirst () {
         return $this->first;
-    }
+    } // end getFirst
 
     public function getLast () {
         return $this->last;
-    }
+    } // end getLast
 
     public function getFullName () {
         return $this->first . " " . $this->last;
-    }
+    } // end getFullName
 
     public static function getObjectCount() {
         return self::$objectCount;
-    }
-}
+    }  // end getObjectCount
+    
+} // end Person
 
 // The code below runs everytime this class loads and 
 // should be commented out after testing.

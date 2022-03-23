@@ -4,7 +4,8 @@ function bmi ($ft, $inch, $weight)
 {
     $m = ($ft * 12 + $inch) * 0.0254;
     return ($m);
-} 
+} // end bmi
+
 // This is test code, comment it out for production
 echo bmi (6, 1, 170);
 

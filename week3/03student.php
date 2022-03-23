@@ -1,43 +1,5 @@
 <?php
 
-// abstract class Person {
-//     protected $first;
-//     protected $last;
-//     private static $objectCount=0;
-
-//     public function __construct ($firstArg, $lastArg) {
-//         $this->first = $firstArg;
-//         $this->last = $lastArg;
-
-//         self::$objectCount++;
-        
-//     }
-
-//     public function setFirst ($firstArg) {
-//         $this->first = $firstArg;
-//     }
-
-//     public function setLast ($lastArg) {
-//         $this->last = $lastArg;
-//     }
-
-//     public function getFirst () {
-//         return $this->first;
-//     }
-
-//     public function getLast () {
-//         return $this->last;
-//     }
-
-//     public function getFullName () {
-//         return $this->first . " " . $this->last;
-//     }
-
-//     public static function getObjectCount() {
-//         return self::$objectCount;
-//     }
-// }
-
 include ('./02person_v2.php');
 
 class Student extends Person {
@@ -49,18 +11,18 @@ class Student extends Person {
         $this->studentId = $id;
 
         parent::__construct($firstArg, $lastArg);
-        
-    }
+    } // end constructor
 
     public function getGPA () {
         return $this->gpa;
-    }
+    } // end getGPA
+
     public function getStudentId () {
 
         return $this->studentId;
-    }
+    } // end getStudentID
 
-}
+} // end student
 
 // The code below runs everytime this class loads and 
 // should be commented out after testing.

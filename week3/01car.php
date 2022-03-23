@@ -8,15 +8,17 @@ class Car {
     public function __construct ($model_arg) {
         $this->model = $m;
 
-    }
-
+    } // end constructor
+    
     public function setModel($model) {
         $this->model = $model;
-    }
+    } // end setModel
+
     public function drive() {
         echo "Drive " . $this->model;
-    }
-}
+    } // end drive
+
+} // end Car
 
 // The code below runs everytime this class loads and 
 // should be commented out after testing.
