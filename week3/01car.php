@@ -1,10 +1,11 @@
 <?php
 
+/// Class car
 class Car {
     private $engine;
     private $model;
 
-    public function __construct ($m) {
+    public function __construct ($model_arg) {
         $this->model = $m;
 
     }
@@ -17,9 +18,11 @@ class Car {
     }
 }
 
-$c = new Car("Toyota Yaris");
-$c2 = new Car("Honda Accord");
+// The code below runs everytime this class loads and 
+// should be commented out after testing.
+$carOne = new Car("Toyota Yaris");
+$carTwo = new Car("Honda Accord");
 
-$c->setModel( "BMW");
-// $c->drive();
-var_dump ($c);
+$carOne->setModel( "BMW");
+$carOne->drive();
+var_dump ($carOne);
