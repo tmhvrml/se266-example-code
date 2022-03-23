@@ -2,10 +2,9 @@
 
     include (__DIR__ . '/db.php');
     
-    
+    // Get listing of all teams
     function getTeams () {
         global $db;
-        
         
         $results = [];
 
@@ -19,16 +18,16 @@
          return ($results);
     }
 
-    
-    function addTeam ($t, $d) {
+    //Add a team to database
+    function addTeam ($team, $division) {
         global $db;
         $results = "Not added";
 
         $stmt = $db->prepare("INSERT INTO teams SET teamName = :team, division = :division");
 
         $binds = array(
-            ":team" => $t,
-            ":division" => $d
+            ":team" => $team,
+            ":division" => $division
         );
         
         
@@ -39,18 +38,16 @@
         return ($results);
     }
    
-
-    function addTeam2 ($t, $d) {
+    // Alternative style to add team records database.
+    function addTeam2 ($team, $division) {
         global $db;
         $results = "Not added";
 
         $stmt = $db->prepare("INSERT INTO teams SET teamName = :team, division = :division");
        
-        $stmt->bindValue(':team', $t);
-        $stmt->bindValue(':division', $d);
+        $stmt->bindValue(':team', $team);
+        $stmt->bindValue(':division', $division);
        
-        
-        
         if ($stmt->execute() && $stmt->rowCount() > 0) {
             $results = 'Data Added';
         }

@@ -14,37 +14,29 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        
-    <div class="col-sm-offset-2 col-sm-10">
-        <h1>NFL Teams</h1>
-    
-   
-  
-    <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Team Name</th>
-                    <th>Division</th>
-                </tr>
-            </thead>
-            <tbody>
-           
-            
-            <?php foreach ($teams as $row): ?>
-                <tr>
-                    <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['teamName']; ?></td>
-                    <td><?php echo $row['division']; ?></td>            
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-        
-        <br />
-        <a href="addTeam.php">Add Team</a>
+<div class="container">
+     <div class="col-sm-offset-2 col-sm-10">
+     <h3><a href="addTeam.php">Add Team</a></h3>
+   <h1>NFL Teams</h1>
+   <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Team Name</th>
+                <th>Division</th>
+            </tr>
+        </thead>
+        <tbody>
+         <?php foreach ($teams as $row): ?>
+            <tr>
+                <td><?php echo $row['id']; ?></td>
+                <td><?php echo $row['teamName']; ?></td>
+                <td><?php echo $row['division']; ?></td>            
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
     </div>
-    </div>
+</div>
 </body>
 </html>
