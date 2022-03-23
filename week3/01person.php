@@ -9,18 +9,17 @@ class Person {
     private $first;
     private $last;
 
-    public function __construct ($f, $l) {
-        $this->first = $f;
-        $this->last = $l;
-        
+    public function __construct ($firstArg, $lastArg) {
+        $this->first = $firstArg;
+        $this->last = $lastArg;
     }
 
-    public function setFirst ($f) {
-        $this->first = $f;
+    public function setFirst ($firstArg) {
+        $this->first = $firstArg;
     }
 
-    public function setLast ($l) {
-        $this->last = $l;
+    public function setLast ($lastArg) {
+        $this->last = $lastArg;
     }
 
     public function getFirst () {
@@ -36,6 +35,8 @@ class Person {
     }
 }
 
+// The code below runs everytime this class loads and 
+// should be commented out after testing.
 $p = new Person('Mickey', 'Mouse');
 
 echo $p->getFullName();
