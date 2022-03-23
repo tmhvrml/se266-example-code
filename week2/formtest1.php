@@ -1,21 +1,18 @@
 <?php
     
+    // This code runs everytime the page loads
     $firstName = "";
     $error = "";
     if (isset($_POST['btnSubmit'])) {
         $firstName = filter_input(INPUT_POST, 'firstName'); 
         $oldEnough = isset($_POST['oldEnoughToDrive']);
-        if (isset($_POST['oldEnoughToDrive'])) {
-            $oldEnough = true;
-        } else {
-            $oldEnough = false;
-        }
+        
         if ($firstName == "") {
             $error .= "No first name provided";
         }
-        //echo "Submitted form";
+        //echo "Submitted form";    // for testing
     } else {
-       // echo "Not yet submitted";
+       // echo "Not yet submitted"; // for testing
     }
     
 ?>

@@ -1,11 +1,11 @@
 <?php
     
+    // This code runs everytime the page loads
     $firstName = "Alex";
     if (isset($_POST['btnSubmit'])) {
         //var_dump ($_POST);
         $firstName = $_POST['firstName'];
         echo $_POST['firstName'];
-      
     }
 ?>
 <!DOCTYPE html>
