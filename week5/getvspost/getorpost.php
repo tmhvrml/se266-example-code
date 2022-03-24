@@ -1,4 +1,7 @@
 <?php
+
+//This code executes everytime the page loads.
+
 include __DIR__ . '/util.php';
 
 if (isGetRequest()) {

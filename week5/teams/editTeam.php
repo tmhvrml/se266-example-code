@@ -1,8 +1,8 @@
  <?php
-        
+        // This code runs everytime the page loads
+
         include __DIR__ . '/model/model_teams.php';
-        include __DIR__ . '/functions.php';
-        
+        include __DIR__ . '/include/functions.php';
         
         // let's figure out if we're doing update or add
         if (isset($_GET['action'])) {
@@ -37,7 +37,7 @@
            header('Location: view.php');
            
        }
-    ?>
+?>
     
 
 <html lang="en">
@@ -50,8 +50,6 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-   
-
     
 <div class="container">
     

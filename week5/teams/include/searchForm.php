@@ -9,8 +9,7 @@
               
           </select>
        <input type="text" name="fieldValue" />
-      <button type="submit">Search</button>
-      
+      <button type="submit">Search</button>     
   </form>
     
   

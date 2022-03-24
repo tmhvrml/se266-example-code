@@ -1,7 +1,7 @@
 <?php
     
     include __DIR__ . '/model/model_teams.php';
-    include __DIR__ . '/functions.php';
+    include __DIR__ . '/include/functions.php';
     if (isPostRequest()) {
         $id = filter_input(INPUT_POST, 'teamId');
         deleteTeam ($id);
@@ -12,7 +12,7 @@
 ?>
 <html lang="en">
 <head>
-  <title>View NFL Teams</title>
+  <title>View NFL Teams</title> 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -24,11 +24,8 @@
         
     <div class="col-sm-offset-2 col-sm-10">
         <h1>NFL Teams</h1>
-    
-    
-  
-    
-        
+        <br />
+        <a href="editTeam.php?action=add">Add Team</a>      
     <table class="table table-striped">
             <thead>
                 <tr>
@@ -58,9 +55,7 @@
             <?php endforeach; ?>
             </tbody>
         </table>
-        
-        <br />
-        <a href="editTeam.php?action=add">Add Team</a>
+       
     </div>
     </div>
 </body>

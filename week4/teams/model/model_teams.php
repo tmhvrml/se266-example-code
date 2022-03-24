@@ -57,10 +57,8 @@
         return ($results);
     }
    
-    
     //   $result = addTeam2 ('Ajax', 'Eredivisie');
     //   echo $result;
-    
     
 
 ?>

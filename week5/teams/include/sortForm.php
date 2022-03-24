@@ -11,7 +11,5 @@
        <input type="radio" name="fieldValue" value="DESC" />Descending
        
       <button type="submit"  name="sortTeam">Sort</button>
-   
-      
-  </form>
+</form>
       
