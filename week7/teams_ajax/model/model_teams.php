@@ -21,7 +21,6 @@
         global $db;
         $id = -1;
         $stmt = $db->prepare("INSERT INTO teams SET teamName = :team, division = :division");
-
         $stmt->bindValue(':team', $t);
         $stmt->bindValue(':division', $d);
             

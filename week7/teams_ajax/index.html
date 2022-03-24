@@ -34,10 +34,8 @@
         for (i=0; i<teams.length;i++) {
             $("#team_list").append('<li><a href="#">' + teams[i].teamName + '</a></li>');
         }
-        
-       
-        
     }
+
     window.addEventListener('load', loadPage);
     const button = document.querySelector('#add_team');
 
@@ -49,7 +47,6 @@
         
         const url = 'insert_team.php';
         const data = { team_name: team_name, division: division };
-
         try {
           const response = await fetch(url, {
             method: 'POST', 
@@ -60,8 +57,8 @@
           });
           const id = await response.json();
           
-          $("#team_list").append('<li><a href="#">' + team_name + '</a></li>');
-          document.getElementById("message").innerHTML = "Added team " + team_name + ". Id: " + id;
+          $("#team_list").append('<li><a href="#">' + team_name + '  ' + division + '</a></li>');
+        document.getElementById("message").innerHTML = "Added Team: " + team_name + ", Division: " + division + " -> Id: " + id;
         } catch (error) {
             console.error (error);
 
