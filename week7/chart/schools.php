@@ -1,7 +1,7 @@
 <?php
 
     include __DIR__ . '/model/model_schools.php';
-    include  __DIR__ . '/functions/colorFunctions.php'; 
+    include  __DIR__ . '/include/colorFunctions.php'; 
     
     $schools = getSchoolSummaryInfo();
     

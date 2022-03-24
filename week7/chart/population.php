@@ -13,7 +13,11 @@
                      return $this->name;		
              }		
 
-    }	 	
+    }	
+    
+    // code below executes every time file is loaded
+    // comment out after testing
+    
     $people = array();
     
     $people[] = new person ('Jim');
