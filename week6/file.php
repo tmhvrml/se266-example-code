@@ -11,14 +11,15 @@
 //    $name = fgets ($file);
 //    echo $name . "*** <br />";
 // }
+define ("MAX_SCHOOLS", 10);
 
-if (!file_exists("uploads/schools.csv")) {
+if (!file_exists("upload/schools.csv")) {
    echo "File does not exist";
    exit;
 }
-$file = fopen ('uploads/schools.csv', 'rb');
+$file = fopen ('upload/schools.csv', 'rb');
 $i = 0;
-while (!feof($file) && $i<10) {
+while (!feof($file) && $i < MAX_SCHOOLS ) {
    
    $school = fgetcsv($file);
    

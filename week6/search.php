@@ -1,6 +1,6 @@
 <?php
-    include_once __DIR__ . "/models/model_patients.php";
-    include_once __DIR__ . "/includes/functions.php";
+    include_once __DIR__ . "/model/model_patients.php";
+    include_once __DIR__ . "/include/functions.php";
    
     
      $schoolName = "";

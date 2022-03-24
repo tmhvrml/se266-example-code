@@ -14,7 +14,16 @@
 ?>
              <li><a href="<?= $f ?>"><?= $f?></a></li>
 <?php
-        endif;
+        elseif (strlen($f) > 3 && strpos($f, ".") == 0):
+?>
+             <li>Folder: <a href="<?= $f ?>"><?= $f?></a></li>
+<?php
+        else:
+?>
+             <li>Other: <a href="<?= $f ?>"><?= $f?></a></li>
+
+<?php
+       endif;
     endforeach;
 ?>
 </ul>

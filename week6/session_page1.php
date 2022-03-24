@@ -1,6 +1,6 @@
 <?php
     include __DIR__ . '/car.php';
-    include __DIR__ . '/functions.php';
+    include __DIR__ . '/include/functions.php';
     session_start();
 
     // sessions can be simple

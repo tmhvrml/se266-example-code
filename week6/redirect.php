@@ -1,6 +1,6 @@
 <?php
 
-header('Location: page1.php');
+header('Location: session_page1.php');
 
 ?>
 

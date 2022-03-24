@@ -1,7 +1,8 @@
 <?php
+
     include_once __DIR__ . "/models/model_schools.php";
     include_once __DIR__ . "/includes/functions.php";
-    
+
 
     if (isPostRequest()) {
         $username = filter_input(INPUT_POST, 'userName');
