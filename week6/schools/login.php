@@ -1,7 +1,7 @@
 <?php
 
-    include_once __DIR__ . "/models/model_schools.php";
-    include_once __DIR__ . "/includes/functions.php";
+    include_once __DIR__ . "/model/model_schools.php";
+    include_once __DIR__ . "/include/functions.php";
 
 
     if (isPostRequest()) {
@@ -9,7 +9,6 @@
         $password = filter_input(INPUT_POST, 'password');
        
        // your logic here
-        
     
     }
 ?>
@@ -29,6 +28,9 @@
 <title>Schools Upload</title>
 </head>
 <body>
+    <?php
+      include_once __DIR__ . "/include/header.php";
+?>
 
     <div id="mainDiv">
         <form method="post" action="login.php">
@@ -52,6 +54,9 @@
         </form>
         
     </div>
+    <?php
+      include_once __DIR__ . "/include/footer.php";
+?>
 
 
 </body>

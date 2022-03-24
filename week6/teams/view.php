@@ -12,11 +12,13 @@
         
     <div class="col-sm-offset-2 col-sm-10">
         <h1>NFL Teams</h1>
-    
+        <br />
+        <div class="col-sm-offset-2 col-sm-10"><a href="editTeam.php?action=add">Add Team</a></div>
+        <div class="col-sm-offset-2 col-sm-10"><a href="./searchsort.php">Search and Sort Teams</a></div>
     <?php
         
         include __DIR__ . '/model/model_teams.php';
-        include __DIR__ . '/functions.php';
+        include __DIR__ . '/include/functions.php';
         if (isPostRequest()) {
             $id = filter_input(INPUT_POST, 'teamId');
             deleteTeam ($id);
@@ -58,8 +60,7 @@
             </tbody>
         </table>
         
-        <br />
-        <a href="editTeam.php?action=add">Add Team</a>
+       
     </div>
     </div>
 </body>

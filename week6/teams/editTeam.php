@@ -1,7 +1,7 @@
  <?php
         
         include __DIR__ . '/model/model_teams.php';
-        include __DIR__ . '/functions.php';
+        include __DIR__ . '/include/functions.php';
         
         
         // let's figure out if we're doing update or add
@@ -54,8 +54,10 @@
     
 <div class="container">
     
-  <h2>Add Team</h2>
-  <form class="form-horizontal" action="editTeam.php" method="post">
+  <h1>Add Team</h1>
+  <div class="col-sm-offset-2 col-sm-10"><a href="./view.php">View Teams</a></div>
+  <div class="col-sm-offset-2 col-sm-10"><a href="./searchsort.php">Search and Sort Teams</a></div>
+ <form class="form-horizontal" action="editTeam.php" method="post">
       <input type="text" name="action" value="<?php echo $action; ?>">
       <input type="text" name="teamId" value="<?php echo $id; ?>">
       
@@ -80,7 +82,7 @@
     </div>
   </form>
   
-  <div class="col-sm-offset-2 col-sm-10"><a href="./view.php">View Teams</a></div>
+  
 </div>
 
 </body>

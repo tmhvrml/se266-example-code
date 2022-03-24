@@ -1,5 +1,7 @@
 <?php
 
+
+
 if (isset ($_FILES['file1'])) {
     $tmp_name = $_FILES['file1']['tmp_name'];
     $path = getcwd() .DIRECTORY_SEPARATOR . 'uploads';

@@ -26,11 +26,13 @@
         <title>Search and Sort</title>
     </head>
     <body>
- 
+    <div class="col-sm-offset-2 col-sm-10"><a href="editTeam.php?action=add">Add Team</a></div>
+    <div class="col-sm-offset-2 col-sm-10"><a href="./view.php">View Teams</a></div>
+
         <?php
-            include __DIR__ . '/includes/searchForm.php';
-            include __DIR__ . '/includes/sortForm.php';
-            include __DIR__ . '/includes/view.php';
+            include __DIR__ . '/include/searchForm.php';
+            include __DIR__ . '/include/sortForm.php';
+            include __DIR__ . '/include/view.php';
         
         ?>
     </body>
