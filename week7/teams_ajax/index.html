@@ -30,17 +30,18 @@
         
         
 <script>
-    function displayTeams (teams) {
+     window.addEventListener('load', loadPage);
+    const button = document.querySelector('#add_team');
+
+    button.addEventListener('click', add_team);
+    
+
+   function displayTeams (teams) {
         for (i=0; i<teams.length;i++) {
             $("#team_list").append('<li><a href="#">' + teams[i].teamName + '</a></li>');
         }
     }
 
-    window.addEventListener('load', loadPage);
-    const button = document.querySelector('#add_team');
-
-    button.addEventListener('click', add_team);
-    
     async function add_team () {
         var team_name = document.getElementById("team_name").value;
         var division = document.getElementById("division").value;
@@ -57,7 +58,7 @@
           });
           const id = await response.json();
           
-          $("#team_list").append('<li><a href="#">' + team_name + '  ' + division + '</a></li>');
+          $("#team_list").append('<li><a href="#">' + team_name + '</a></li>');
         document.getElementById("message").innerHTML = "Added Team: " + team_name + ", Division: " + division + " -> Id: " + id;
         } catch (error) {
             console.error (error);
