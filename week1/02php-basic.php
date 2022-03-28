@@ -14,7 +14,7 @@ $title = 'my page title ' . $stuff[$rand];
 if ( is_int($stuff) ) {
     $title = 'my page title is 10';
 } else {
-    $title = 'my page title';
+    //$title = 'my page title';
 }
 
 // Try to declare variables close to where they are used.

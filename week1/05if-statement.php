@@ -25,8 +25,8 @@
             echo 'A === B';
         }
         echo '<br />';
-        if ($a == $b) {
-            echo 'A == B';
+        if ($a == $value) {
+            echo 'A == value';
         }
         ?>
 
