@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head>  
         <meta charset="UTF-8">
         <title>SE 266 - Hello World</title>
     </head>
