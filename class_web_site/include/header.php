@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title>SE 266 - Erik van Renselaar</title>
+  <title>SE 266 - PHP, MySQL, and More!</title>
 <style>
 
 p.a {
@@ -109,7 +109,7 @@ li {
   <a href="../site/heroku_resources.php">Heroku Resources</a>
   <a href="../site/php_resources.php">PHP Resources</a>
   <a href="../site/git_resources.php">Git Resources</a>
-  <a href="https://github.com/hvanrenselaar/se266-spring-2020">My GitHub Repo</a>
+  <a href="https://github.com/tmhvrml/se266-example-code">My GitHub Repo</a>
 </div>
 
 

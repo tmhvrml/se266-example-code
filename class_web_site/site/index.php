@@ -1,7 +1,7 @@
 
  <?php include __DIR__ . '/../include/header.php'; ?>
     
-<h1>PHP and MySQL - Erik van Renselaar</h1>
+<h1>PHP, MySQL, and More! - Tim Henry</h1>
 <p>
 Welcome to my PHP and MySQL page. You can find an overview of all my working PHP projects along with my code.
 </p>
