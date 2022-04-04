@@ -49,7 +49,7 @@
                             
                    </td>
                     <td><?php echo $row['division']; ?></td> 
-                    <td><a href="editTeam.php?action=update&teamId=<?= $row['id'] ?>">Edit</a></td> 
+                    <td><a href="editTeam.php?action=edit&teamId=<?= $row['id'] ?>">Edit</a></td> 
                     
                 </tr>
             <?php endforeach; ?>

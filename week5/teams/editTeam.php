@@ -5,10 +5,11 @@
         include __DIR__ . '/include/functions.php';
         
         // let's figure out if we're doing update or add
-        if (isset($_GET['action'])) {
+        if (isset($_GET['action'])) 
+        {
             $action = filter_input(INPUT_GET, 'action');
             $id = filter_input(INPUT_GET, 'teamId');
-            if ($action == "update") {
+            if ($action == "edit") {
                 $row = getTeam($id);
                 $teamName = $row['teamName'];
                 $division = $row['division'];
@@ -18,7 +19,8 @@
             }
             
             
-        } elseif (isset($_POST['action'])) {
+        } elseif (isset($_POST['action'])) 
+        {
             $action = filter_input(INPUT_POST, 'action');
             $id = filter_input(INPUT_POST, 'teamId');
             $teamName = filter_input(INPUT_POST, 'team');
@@ -27,13 +29,15 @@
         } 
             
        
-       if (isPostRequest() && $action == "add") {
+       if (isPostRequest() && $action == "add") 
+       {
        
-           $result = addTeam ($teamName, $division);
+           $result = addTeam($teamName, $division);
            header('Location: view.php');
            
-       } elseif (isPostRequest() && $action == "update") {
-           $result = updateTeam ($id, $teamName, $division);
+       } elseif (isPostRequest() && $action == "edit") 
+       {
+           $result = updateTeam($id, $teamName, $division);
            header('Location: view.php');
            
        }
@@ -53,7 +57,7 @@
     
 <div class="container">
     
-  <h2>Add Team</h2>
+  <h2>Add/Edit Team</h2>
   <form class="form-horizontal" action="editTeam.php" method="post">
       <input type="text" name="action" value="<?= $action; ?>">
       <input type="text" name="teamId" value="<?= $id; ?>">
