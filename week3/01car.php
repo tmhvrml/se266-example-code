@@ -1,20 +1,23 @@
 <?php
 
 /// Class car
-class Car {
-    private $engine;
+class Car 
+{
     private $model;
 
-    public function __construct ($model_arg) {
+    public function __construct ($model_arg) 
+    {
         $this->model = $m;
 
     } // end constructor
     
-    public function setModel($model) {
+    public function setModel($model) 
+    {
         $this->model = $model;
     } // end setModel
 
-    public function drive() {
+    public function drive() 
+    {
         echo "Drive " . $this->model;
     } // end drive
 

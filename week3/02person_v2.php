@@ -4,39 +4,47 @@
         The variable is independent of the current object and is the same for all objects of this class
         Note how the variable is referenced using self:: within the class and then Person:: outside of the class
     */
-class Person {
+class Person 
+{
     private $first;
     private $last;
     private static $objectCount=0;
 
-    public function __construct ($firstArg, $lastArg) {
+    public function __construct ($firstArg, $lastArg) 
+    {
         $this->first = $firstArg;
         $this->last = $lastArg;
 
         self::$objectCount++;
     } // end constructor
 
-    public function setFirst ($firstArg) {
+    public function setFirst ($firstArg) 
+    {
         $this->first = $firstArg;
     } // end setFirst
 
-    public function setLast ($lastArg) {
+    public function setLast ($lastArg) 
+    {
         $this->last = $lastArg;
     } // end setLast
 
-    public function getFirst () {
+    public function getFirst () 
+    {
         return $this->first;
     } // end getFirst
 
-    public function getLast () {
+    public function getLast () 
+    {
         return $this->last;
     } // end getLast
 
-    public function getFullName () {
+    public function getFullName () 
+    {
         return $this->first . " " . $this->last;
     } // end getFullName
 
-    public static function getObjectCount() {
+    public static function getObjectCount() 
+    {
         return self::$objectCount;
     }  // end getObjectCount
     

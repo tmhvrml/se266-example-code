@@ -2,7 +2,8 @@
 
 include ('./02person_v2.php');
 
-class Student extends Person {
+class Student extends Person 
+{
     private $studentId;
     private $gpa;
     
@@ -13,12 +14,13 @@ class Student extends Person {
         parent::__construct($firstArg, $lastArg);
     } // end constructor
 
-    public function getGPA () {
+    public function getGPA () 
+    {
         return $this->gpa;
     } // end getGPA
 
-    public function getStudentId () {
-
+    public function getStudentId () 
+    {
         return $this->studentId;
     } // end getStudentID
 
