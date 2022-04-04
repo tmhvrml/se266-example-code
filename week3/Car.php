@@ -7,18 +7,18 @@ class Car
 
     public function __construct ($model_arg) 
     {
-        $this->model = $m;
+        $this->model = $model_arg;
 
     } // end constructor
     
-    public function setModel($model) 
+    public function setModel($model_arg) 
     {
-        $this->model = $model;
+        $this->model = $model_arg;
     } // end setModel
 
     public function drive() 
     {
-        echo "Drive " . $this->model;
+        echo "🚗 Drive " . $this->model . "<br />";
     } // end drive
 
 } // end Car
