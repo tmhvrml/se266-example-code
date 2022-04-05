@@ -5,9 +5,9 @@ class Teams
     // This data field represents the database
     private $teamData;
 
-    public function __construct () 
+    public function __construct ($configFile) 
     {
-        if ($ini = parse_ini_file( __DIR__ . '/dbconfig.ini'))
+        if ($ini = parse_ini_file($configFile)
         {
             $teamPDO = new PDO(  "mysql:host=" . $ini['servername'] . 
                     ";port=" . $ini['port'] . 
@@ -107,8 +107,9 @@ class Teams
 
 
  <?php
+    $configFile = __DIR__ . '/dbconfig.ini';
 try {
-    $c = new Teams();
+    $c = new Teams($configFile);
 } catch ( Exception $e ) {
     echo "<h2>" . $e->getMessage() . "</h2>";
     var_dump( $e );
