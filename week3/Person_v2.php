@@ -8,6 +8,7 @@ class Person
 {
     private $first;
     private $last;
+    private $myID;
     private static $objectCount=0;
 
     public function __construct ($firstArg, $lastArg) 
@@ -15,6 +16,7 @@ class Person
         $this->first = $firstArg;
         $this->last = $lastArg;
 
+        $this->myID = self::$objectCount;
         self::$objectCount++;
     } // end constructor
 
@@ -40,12 +42,19 @@ class Person
 
     public function getFullName () 
     {
-        return $this->first . " " . $this->last;
+        $message = $this->first . " " . $this->last;
+        return $message;
     } // end getFullName
+  
+    public function getID () 
+    {
+        return $this->myID;
+    } // end getFullName
+  
 
     public static function getObjectCount() 
     {
-        return self::$objectCount;
+        return Person::$objectCount;
     }  // end getObjectCount
     
 } // end Person
@@ -53,6 +62,7 @@ class Person
 // The code below runs everytime this class loads and 
 // should be commented out after testing.
 $p = new Person('Mickey', 'Mouse');
+echo $p->getID() . "  ";
 $p2 = new Person('Donald', 'Duck');
 
 echo Person::getObjectCount();

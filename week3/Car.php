@@ -18,7 +18,8 @@ class Car
 
     public function drive() 
     {
-        echo "🚗 Drive " . $this->model . "<br />";
+        $message =  "🚗 Drive " . $this->model . "<br />";
+        return $message;
     } // end drive
 
 } // end Car
@@ -29,5 +30,6 @@ $carOne = new Car("Toyota Yaris");
 $carTwo = new Car("Honda Accord");
 
 $carOne->setModel( "BMW");
-$carOne->drive();
-var_dump ($carOne);
+$message = $carOne->drive();
+echo $message . " It works!";
+var_dump ($carTwo);
