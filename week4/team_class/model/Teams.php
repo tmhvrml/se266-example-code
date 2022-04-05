@@ -7,16 +7,23 @@ class Teams
 
     public function __construct () 
     {
-        $ini = parse_ini_file( __DIR__ . '/dbconfig.ini');
+        if ($ini = parse_ini_file( __DIR__ . '/dbconfig.ini'))
+        {
+            $teamPDO = new PDO(  "mysql:host=" . $ini['servername'] . 
+                    ";port=" . $ini['port'] . 
+                    ";dbname=" . $ini['dbname'], 
+                    $ini['username'], 
+                    $ini['password']);
 
-        $this->teamData = new PDO(  "mysql:host=" . $ini['servername'] . 
-                ";port=" . $ini['port'] . 
-                ";dbname=" . $ini['dbname'], 
-                $ini['username'], 
-                $ini['password']);
+            $teamPDO->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            $teamPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $this->teamData->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $this->teamData->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->teamData = $teamPDO;
+        }
+        else{
+            throw new Exception( "<h2>Creation of Teams object failed!</h2>", 0, null );
+        }
+
     } // end constructor
 
     // Get listing of all teams
@@ -96,4 +103,14 @@ class Teams
     }
  
 } // end class Teams
+?>
+
+
+ <?php
+try {
+    $c = new Teams();
+} catch ( Exception $e ) {
+    echo "<h2>" . $e->getMessage() . "</h2>";
+    var_dump( $e );
+}
 ?>
