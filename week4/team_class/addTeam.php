@@ -9,7 +9,7 @@
   {
     $team = filter_input(INPUT_POST, 'team');
     $division = filter_input(INPUT_POST, 'division');
-    $teamDatabase = new Teams();
+    $teamDatabase = new Teams(__DIR__ . '/model/dbconfig.ini');
     $teamListing = $teamDatabase->addTeam($team, $division);    
   }
 

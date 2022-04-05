@@ -1,6 +1,6 @@
 <?php
         include __DIR__ . '/model/Teams.php';
-        $teamDatabase = new Teams();
+        $teamDatabase = new Teams(__DIR__ . '/model/dbconfig.ini');
         $teamListing = $teamDatabase->getTeams();
 ?>
     

@@ -5,29 +5,30 @@ class Teams
     // This data field represents the database
     private $teamData;
 
-    public function __construct ($configFile) 
+    public function __construct($configFile) 
     {
-        if ($ini = parse_ini_file($configFile)
+        if ($ini = parse_ini_file($configFile))
         {
-            $teamPDO = new PDO(  "mysql:host=" . $ini['servername'] . 
-                    ";port=" . $ini['port'] . 
-                    ";dbname=" . $ini['dbname'], 
-                    $ini['username'], 
-                    $ini['password']);
+            $teamPDO = new PDO( "mysql:host=" . $ini['servername'] . 
+                                ";port=" . $ini['port'] . 
+                                ";dbname=" . $ini['dbname'], 
+                                $ini['username'], 
+                                $ini['password']);
 
             $teamPDO->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             $teamPDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             $this->teamData = $teamPDO;
         }
-        else{
+        else
+        {
             throw new Exception( "<h2>Creation of Teams object failed!</h2>", 0, null );
         }
 
     } // end constructor
 
     // Get listing of all teams
-    public function getTeams () 
+    public function getTeams() 
     {
         $results = [];
         $teamTable = $this->teamData;
@@ -41,7 +42,7 @@ class Teams
     }
 
     //Add a team to database
-    public function addTeam ($team, $division) 
+    public function addTeam($team, $division) 
     {
         $results = "Not added";
         $teamTable = $this->teamData;
@@ -59,7 +60,7 @@ class Teams
     }
    
     // Alternative style to add team records database.
-    public function addTeam2 ($team, $division) 
+    public function addTeam2($team, $division) 
     {
         $results = "Not added";
 
@@ -79,7 +80,7 @@ class Teams
     }
 
     //// Stubbed for future implementation
-    public function updateTeam ($id, $team, $division) 
+    public function updateTeam($id, $team, $division) 
     {
         $results = "Team not updated.";
         
@@ -87,7 +88,7 @@ class Teams
     }
 
     //// Stubbed for future implementation   
-    public function deleteTeam ($id) 
+    public function deleteTeam($id) 
     {
         $results = "Data was not deleted.";
          
