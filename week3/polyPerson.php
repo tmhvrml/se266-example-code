@@ -11,7 +11,7 @@ $audience =
     new Person("Jane", "Smith"),
     new Student('Donald', 'Duck', '11111111', 4.5),
     new Worker('Alex', 'Patel', 'Architect')
-    ];
+];
 
 foreach($audience as $who)
 {
