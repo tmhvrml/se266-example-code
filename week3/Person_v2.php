@@ -61,10 +61,10 @@ class Person
 
 // The code below runs everytime this class loads and 
 // should be commented out after testing.
-$p = new Person('Mickey', 'Mouse');
-echo $p->getID() . "  ";
-$p2 = new Person('Donald', 'Duck');
+// $p = new Person('Mickey', 'Mouse');
+// echo $p->getID() . "  ";
+// $p2 = new Person('Donald', 'Duck');
 
-echo Person::getObjectCount();
+// echo Person::getObjectCount();
 
 ?>

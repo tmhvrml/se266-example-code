@@ -1,7 +1,18 @@
 <?php
-        include __DIR__ . '/model/Teams.php';
-        $teamDatabase = new Teams(__DIR__ . '/model/dbconfig.ini');
-        $teamListing = $teamDatabase->getTeams();
+include_once __DIR__ . '/model/Teams.php';
+$configFile = __DIR__ . '/model/dbconfig.ini';
+
+try 
+{
+    $teamDatabase = new Teams($configFile);
+} 
+catch ( Exception $error ) 
+{
+    echo "<h2>" . $error->getMessage() . "</h2>";
+}
+
+$teamListing = $teamDatabase->getTeams();
+
 ?>
     
 <html lang="en">
