@@ -4,6 +4,15 @@
     $firstName = "";
     $error = "";
     if (isset($_POST['btnSubmit'])) {
+
+        // Example code to grab array keys
+        $keys = array_keys($_POST);
+        foreach($keys as $myKey=>$value)
+        {
+            echo "<br/>" . $myKey . " : " . $value . "<br/>";
+        }
+
+        // Check Form
         $firstName = filter_input(INPUT_POST, 'firstName'); 
         $oldEnough = isset($_POST['oldEnoughToDrive']);
         
