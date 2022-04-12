@@ -95,7 +95,7 @@ class Teams
             $results = 'Data Added';
         }
        
-        $stmt->closeCursor();
+       // $stmt->closeCursor();
        
         return $results;
     }

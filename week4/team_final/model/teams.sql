@@ -29,7 +29,7 @@ INSERT INTO teams (teamName, division) VALUES
 ('Dallas Cowboys', 'NFC East'), 
 ('Philadelphia Eagles', 'NFC East'), 
 ('New York Giants', 'NFC East'), 
-('Washington Redskins', 'NFC East'), 
+('Washington Commanders', 'NFC East'), 
 ('Green Bay Packers', 'NFC North'), 
 ('Minnesota Vikings', 'NFC North'), 
 ('Chicago Bears', 'NFC North'), 

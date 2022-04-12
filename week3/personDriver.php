@@ -18,7 +18,7 @@ echo $p->getFullName();
 // Testing Student Class
 echo "<h3>Testing Student Class</h2>";
 $someStudent = new Student('Mickey', 'Mouse', '123456789', 3.5);
-var_dump($s);
+var_dump($someStudent);
 
 $p = new Student('Donald', 'Duck', '111111111', 1.5);
 
@@ -34,7 +34,7 @@ echo Student::getObjectCount() . "<br />";
 // Testing Worker Class
 echo "<h3>Testing Worker Class</h2>";
 $someWorker = new Worker('Mickey', 'Mouse', 'Tailor');
-var_dump($s);
+var_dump($someWorker);
 
 $p = new Worker('Donald', 'Duck', "Swimmer");
 
