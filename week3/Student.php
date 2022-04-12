@@ -1,6 +1,6 @@
 <?php
 
-include ('./Person_v2.php');
+require_once ('./Person_v2.php');
 
 class Student extends Person 
 {
@@ -39,10 +39,10 @@ $someStudent = new Student('Mickey', 'Mouse', '123456789', 3.5);
 
 // $p = new Person ('Donald', 'Duck');
 
-echo Student::getObjectCount() . "<br />";
-echo $someStudent->getFullName() . "<br />";
-echo $someStudent->getStudentSSN() . "<br />";
-echo "<hr />";
+// echo Student::getObjectCount() . "<br />";
+// echo $someStudent->getFullName() . "<br />";
+// echo $someStudent->getStudentSSN() . "<br />";
+// echo "<hr />";
 // echo $p->getFullName() . "<br />";
 // echo Student::getObjectCount() . "<br />";
 
