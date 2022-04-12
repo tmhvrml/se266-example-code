@@ -32,18 +32,4 @@ class Student extends Person
 
 } // end student
 
-// The code below runs everytime this class loads and 
-// should be commented out after testing.
-// $someStudent = new Student('Mickey', 'Mouse', '123456789', 3.5);
-// // var_dump ($s);
-
-// // $p = new Person ('Donald', 'Duck');
-
-// echo Student::getObjectCount() . "<br />";
-// echo $someStudent->getFullName() . "<br />";
-// echo $someStudent->getStudentSSN() . "<br />";
-echo "<hr />";
-// echo $p->getFullName() . "<br />";
-// echo Student::getObjectCount() . "<br />";
-
 ?>
