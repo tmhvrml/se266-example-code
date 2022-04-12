@@ -1,10 +1,18 @@
 <?php
     
-    include __DIR__ . '/model/Teams.php';
-    include __DIR__ . '/include/functions.php';
+    include_once __DIR__ . '/model/Teams.php';
+    include_once __DIR__ . '/include/functions.php';
 
-    $teamDatabase = new Teams();
-
+    // Set up configuration file and create database
+    $configFile = __DIR__ . '/model/dbconfig.ini';
+    try 
+    {
+        $teamDatabase = new Teams($configFile);
+    } 
+    catch ( Exception $error ) 
+    {
+        echo "<h2>" . $error->getMessage() . "</h2>";
+    }   
     // If POST, delete the requested team before listing all teams
     if (isPostRequest()) {
         $id = filter_input(INPUT_POST, 'teamId');
@@ -12,6 +20,7 @@
 
     }
     $teamListing = $teamDatabase->getTeams();
+    
 ?>
 <html lang="en">
 <head>

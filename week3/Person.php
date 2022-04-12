@@ -43,13 +43,4 @@ class Person
     
 } // end person
 
-// The code below runs everytime this class loads and 
-// should be commented out after testing.
-$p = new Person('Mickey', 'Mouse');
-
-echo $p->getFullName();
-echo "<hr />";
-$p->setFirst('Donald');
-echo $p->getFullName();
-
 ?>

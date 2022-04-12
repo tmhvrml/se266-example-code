@@ -1,21 +1,29 @@
  <?php
   
   // This code runs everything the page loads
-  include __DIR__ . '/model/Teams.php';
-  include __DIR__ . '/include/functions.php';
+  include_once __DIR__ . '/model/Teams.php';
+  include_once __DIR__ . '/include/functions.php';
 
   // If we have a POST, we check the fields and add the team to the database
   if (isPostRequest()) 
   {
-    $team = filter_input(INPUT_POST, 'team');
-    $division = filter_input(INPUT_POST, 'division');
-    $teamDatabase = new Teams(__DIR__ . '/model/dbconfig.ini');
+    $configFile = __DIR__ . '/model/dbconfig.ini';
+    try 
+    {
+        $teamDatabase = new Teams($configFile);
+    } 
+    catch ( Exception $error ) 
+    {
+        echo "<h2>" . $error->getMessage() . "</h2>";
+    }   
+    
+    $team = filter_input(INPUT_POST, 'team', FILTER_SANITIZE_SPECIAL_CHARS);
+    $division = filter_input(INPUT_POST, 'division', FILTER_SANITIZE_STRING);  
     $teamListing = $teamDatabase->addTeam($team, $division);    
   }
 
 ?>
     
-
 <html lang="en">
 <head>
   <title>Add NFL Team</title>

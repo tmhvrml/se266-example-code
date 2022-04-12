@@ -104,15 +104,16 @@ class Teams
     }
  
 } // end class Teams
-?>
 
 
- <?php
-    $configFile = __DIR__ . '/dbconfig.ini';
-try {
-    $c = new Teams($configFile);
-} catch ( Exception $e ) {
-    echo "<h2>" . $e->getMessage() . "</h2>";
-    var_dump( $e );
-}
-?>
+
+// $configFile = __DIR__ . '/dbconfig.init';
+// try 
+// {
+//     $c = new Teams($configFile);
+// } catch ( Exception $error ) 
+// {
+//     echo "<h2>" . $error->getMessage() . "</h2>";
+//     var_dump( $error );
+// }
+?> 
