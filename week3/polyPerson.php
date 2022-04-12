@@ -3,6 +3,13 @@
 include_once("./Student.php");
 include_once("./Worker.php");
 
+function whoWeAre($listOfPeople)
+{
+	foreach ($listOfPeople as $human) {
+		echo '<p>' . $human->getFullName() . '</p>';
+	}
+}
+
 $audience = 
 [
     new Person("Jose", "Smith"),
@@ -13,9 +20,13 @@ $audience =
     new Worker('Alex', 'Patel', 'Architect')
 ];
 
-foreach($audience as $who)
-{
-    echo "<br />". $who->getFullName() . "<br />";
-}
+
+echo "<h3>What we are:</h3>";
+foreach ($audience as $value) {
+        echo '<p>' . get_class($value), "</p>";
+    }
+    
+echo "<h3>Who we are:</h3>";
+whoWeAre($audience);
 
 ?>
