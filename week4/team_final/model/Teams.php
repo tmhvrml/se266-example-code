@@ -149,7 +149,7 @@ class Teams
         $stmt = $teamTable->prepare("UPDATE teams SET teamName = :team, division = :division WHERE id=:id");
         
          // Bind query parameters to method parameter values
-         $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':id', $id);
         $stmt->bindValue(':team', $team);
         $stmt->bindValue(':division', $division);
 
@@ -161,37 +161,52 @@ class Teams
           return $updateSucessful;
     }
 
-        //*****************************************************
-// Delete specified team   
+    //*****************************************************
+    // Delete specified team from table
+    // INPUT: id of team to delete
+    // RETURNS: True if update is successful, false otherwise
     public function deleteTeam ($id) 
     {
-        $results = "Data was not deleted.";
+        $deleteSucessful = false;       // Team not updated at this point
+        $teamTable = $this->teamData;   // Alias for database PDO
 
-        $teamTable = $this->teamData;
+        // Preparing SQL query 
+        //    id is used to ensure we delete correct record
         $stmt = $teamTable->prepare("DELETE FROM teams WHERE id=:id");
         
+         // Bind query parameter to method parameter value
         $stmt->bindValue(':id', $id);
             
-        if ($stmt->execute() && $stmt->rowCount() > 0) {
-            $results = 'Data Deleted';
-        } 
-        return $results;
+        // Execute query and check to see if rows were returned 
+        // If so, the team was successfully deleted      
+        $deleteSucessful = ($stmt->execute() && $stmt->rowCount() > 0);
+
+        // Return status to client           
+        return $deleteSucessful;
     }
  
-       //*****************************************************
-// Get one team and place it into an associative array
-   public function getTeam ($id) 
+    //*****************************************************
+    // Get one team and place it into an associative array
+    public function getTeam ($id) 
     {
-        $results = [];
+        $results = [];                  // Array to hold results
+        $teamTable = $this->teamData;   // Alias for database PDO
 
-        $teamTable = $this->teamData;
+        // Preparing SQL query 
+        //    id is used to ensure we delete correct record
         $stmt = $teamTable->prepare("SELECT id, teamName, division FROM teams WHERE id=:id");
-        $stmt->bindValue(':id', $id);
+
+         // Bind query parameter to method parameter value
+         $stmt->bindValue(':id', $id);
        
-        if ( $stmt->execute() && $stmt->rowCount() > 0 ) {
-             $results = $stmt->fetch(PDO::FETCH_ASSOC);
-                        
-         }
+         // Execute query and check to see if rows were returned 
+         if ( $stmt->execute() && $stmt->rowCount() > 0 ) 
+         {
+            // if successful, grab the first row returned
+            $results = $stmt->fetch(PDO::FETCH_ASSOC);                       
+        }
+
+        // Return results to client
         return $results;
     }
  
