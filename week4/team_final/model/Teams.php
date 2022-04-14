@@ -13,7 +13,7 @@ class Teams
     //*****************************************************
     // Teams class constructor:
     // Instantiates a PDO object based on given URL and
-    // uses that to initialize the data fiel $teamData
+    // uses that to initialize the data field $teamData
     //
     // INPUT: URL of database configuration file
     // Throws exception if database access fails
