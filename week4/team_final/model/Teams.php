@@ -49,7 +49,7 @@ class Teams
 
     } // end constructor
 
-// Database access methods are listed below. 
+// Database access & modify methods are listed below. 
 // General structure of each method is:
 //  1) Set up variable for database and query results
 //  2) Set up SQL statement (with parameters, if needed)
@@ -84,7 +84,7 @@ class Teams
     //*****************************************************
     // Add a team to database
     // INPUT: team and divison to add
-    // RETURNS: True is add is successful, false otherwise
+    // RETURNS: True if add is successful, false otherwise
     public function addTeam($team, $division) 
     {
         $addSucessful = false;         // Team not added at this point
@@ -110,9 +110,9 @@ class Teams
     //*****************************************************
      //*****************************************************
     // Add a team to database
-    //   Use alternative style to bind query parameters.
+    //   Uses alternative style to bind query parameters.
     // INPUT: team and divison to add
-    // RETURNS: True is add is successful, false otherwise
+    // RETURNS: True if add is successful, false otherwise
     public function addTeam2($team, $division) 
     {
         $addSucessful = false;         // Team not added at this point
@@ -125,31 +125,40 @@ class Teams
         $stmt->bindValue(':team', $team);
         $stmt->bindValue(':division', $division);
        
-            // Execute query and check to see if rows were returned 
-         // If so, the team was successfully added
+        // Execute query and check to see if rows were returned 
+        // If so, the team was successfully added
          $addSucessful = ($stmt->execute() && $stmt->rowCount() > 0);
         
          // Return status to client
          return $addSucessful;
     }
 
-        //*****************************************************
-// Update specified team with a new name and division
+    //*****************************************************
+    // Update specified team with a new name and division
+    // INPUT: id of team to update
+    //        new value for team name
+    //        new value for division
+    // RETURNS: True if update is successful, false otherwise
     public function updateTeam ($id, $team, $division) 
     {
-        $results = "Team not updated.";
-        $teamTable = $this->teamData;
+        $updateSucessful = false;        // Team not updated at this point
+        $teamTable = $this->teamData;   // Alias for database PDO
+
+        // Preparing SQL query with parameters for team and division
+        //    id is used to ensure we update correct record
         $stmt = $teamTable->prepare("UPDATE teams SET teamName = :team, division = :division WHERE id=:id");
         
-        $stmt->bindValue(':id', $id);
+         // Bind query parameters to method parameter values
+         $stmt->bindValue(':id', $id);
         $stmt->bindValue(':team', $team);
         $stmt->bindValue(':division', $division);
 
-      
-        if ($stmt->execute() && $stmt->rowCount() > 0) {
-            $results = 'Data Updated';
-        }
-        return $results;
+        // Execute query and check to see if rows were returned 
+        // If so, the team was successfully updated      
+        $updateSucessful = ($stmt->execute() && $stmt->rowCount() > 0);
+
+          // Return status to client
+          return $updateSucessful;
     }
 
         //*****************************************************
