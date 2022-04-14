@@ -1,13 +1,25 @@
 <?php
 
+//*****************************************************
+//
+// This class provides a wrapper for the database 
+// All methods work on the teams table
+
 class Teams
 {
     // This data field represents the database
     private $teamData;
 
-    // Teams class constructor
+    //*****************************************************
+    // Teams class constructor:
+    // Instantiates a PDO object based on given URL and
+    // uses that to initialize the data fiel $teamData
+    //
     // INPUT: URL of database configuration file
     // Throws exception if database access fails
+    // ** This constructor is very generic and can be used to 
+    // ** access your course database for any assignment
+    // ** The methods need to be changed to hit the correct table(s)
     public function __construct($configFile) 
     {
         // Parse config file, throw exception if it fails
@@ -32,7 +44,7 @@ class Teams
         else
         {
             // Things didn't go well, throw exception!
-            throw new Exception( "<h2>Creation of Teams object failed!</h2>", 0, null );
+            throw new Exception( "<h2>Creation of database object failed!</h2>", 0, null );
         }
 
     } // end constructor
@@ -45,62 +57,84 @@ class Teams
 //  4) Execute statement and check for returned rows
 //  5) Return results if needed.
 
+    //*****************************************************
     // Get listing of all teams
-    public function getTeams () 
+    // INPUT: None
+    // RETURNS: Array with each entry representing a row in the table
+    //          If no records in table, array is empty
+    public function getTeams() 
     {
-        $results = [];
-        $teamTable = $this->teamData;
+        $results = [];                  // Array to hold results
+        $teamTable = $this->teamData;   // Alias for database PDO
 
+        // Preparing SQL query
         $stmt = $teamTable->prepare("SELECT id, teamName, division FROM teams ORDER BY teamname"); 
         
+        // Execute query and check to see if rows were returned
         if ( $stmt->execute() && $stmt->rowCount() > 0 ) 
         {
-             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);                 
+            // if successful, grab all rows
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);                 
         }         
+
+        // Return results to client
         return $results;
     }
 
-    //Add a team to database
-    public function addTeam ($team, $division) 
+    //*****************************************************
+    // Add a team to database
+    // INPUT: team and divison to add
+    // RETURNS: True is add is successful, false otherwise
+    public function addTeam($team, $division) 
     {
-        $results = "Not added";
-        $teamTable = $this->teamData;
+        $addSucessful = false;         // Team not added at this point
+        $teamTable = $this->teamData;   // Alias for database PDO
+
+        // Preparing SQL query with parameters for team and division
         $stmt = $teamTable->prepare("INSERT INTO teams SET teamName = :team, division = :division");
 
-        $bindParams = array(
+        // Bind query parameters to method parameter values
+        $boundParams = array(
             ":team" => $team,
             ":division" => $division
         );       
         
-        if ($stmt->execute($bindParams) && $stmt->rowCount() > 0) 
-        {
-            $results = 'Data Added';
-        }    
-        return $results;
+         // Execute query and check to see if rows were returned 
+         // If so, the team was successfully added
+        $addSucessful = ($stmt->execute($boundParams) && $stmt->rowCount() > 0);
+        
+         // Return status to client
+         return $addSucessful;
     }
    
-    // Alternative style to add team records database.
-    public function addTeam2 ($team, $division) 
+    //*****************************************************
+     //*****************************************************
+    // Add a team to database
+    //   Use alternative style to bind query parameters.
+    // INPUT: team and divison to add
+    // RETURNS: True is add is successful, false otherwise
+    public function addTeam2($team, $division) 
     {
-        $results = "Not added";
+        $addSucessful = false;         // Team not added at this point
+        $teamTable = $this->teamData;   // Alias for database PDO
 
-        $teamTable = $this->teamData;
+        // Preparing SQL query with parameters for team and division
         $stmt = $teamTable->prepare("INSERT INTO teams SET teamName = :team, division = :division");
-       
+
+        // Bind query parameters to method parameter values
         $stmt->bindValue(':team', $team);
         $stmt->bindValue(':division', $division);
        
-        if ($stmt->execute() && $stmt->rowCount() > 0) 
-        {
-            $results = 'Data Added';
-        }
-       
-       // $stmt->closeCursor();
-       
-        return $results;
+            // Execute query and check to see if rows were returned 
+         // If so, the team was successfully added
+         $addSucessful = ($stmt->execute() && $stmt->rowCount() > 0);
+        
+         // Return status to client
+         return $addSucessful;
     }
 
-    // Update specified team with a new name and division
+        //*****************************************************
+// Update specified team with a new name and division
     public function updateTeam ($id, $team, $division) 
     {
         $results = "Team not updated.";
@@ -118,7 +152,8 @@ class Teams
         return $results;
     }
 
-    // Delete specified team   
+        //*****************************************************
+// Delete specified team   
     public function deleteTeam ($id) 
     {
         $results = "Data was not deleted.";
@@ -134,7 +169,8 @@ class Teams
         return $results;
     }
  
-   // Get one team and place it into an associative array
+       //*****************************************************
+// Get one team and place it into an associative array
    public function getTeam ($id) 
     {
         $results = [];
