@@ -1,26 +1,49 @@
 <?php
     
-    include_once __DIR__ . '../week4/team_final/model/Teams.php';
-    include_once __DIR__ . '../week4/team_final/include/functions.php';
+    include_once __DIR__ . '/ExpandedTeams.php';
+    include_once __DIR__ . '/../week4/team_final/include/functions.php';
 
     // Set up configuration file and create database
-    $configFile = __DIR__ . '../week4/team_final/model/dbconfig.ini';
+    $configFile = __DIR__ . '/../week4/team_final/model/dbconfig.ini';
     try 
     {
-        $teamDatabase = new Teams($configFile);
+        $teamDatabase = new ExpandedTeams($configFile);
     } 
     catch ( Exception $error ) 
     {
         echo "<h2>" . $error->getMessage() . "</h2>";
     }   
     // If POST, delete the requested team before listing all teams
-    if (isPostRequest()) {
-        $id = filter_input(INPUT_POST, 'teamId');
-        $teamDatabase->deleteTeam ($id);
-
+    $teamListing = [];
+    if (isPostRequest()) 
+    {
+        if (isset($_POST["Search"]))
+        {
+            $teamName="";
+            $division="";
+            if ($_POST["fieldName"] == "teamName")
+            {
+                $teamName = $_POST['fieldValue'];
+            }
+            else
+            {
+                $division = $_POST['fieldValue'];
+            }
+            //echo "Team: " . $teamName . "   Division: " . $divison;
+            $teamListing = $teamDatabase->searchTeams($teamName, $division);
+        }
+        else
+        {
+        
+            $id = filter_input(INPUT_POST, 'teamId');
+            $teamDatabase->deleteTeam ($id);
+            $teamListing = $teamDatabase->getTeams();
+        }
     }
-    $teamListing = $teamDatabase->getTeams();
-    
+    else
+    {
+        $teamListing = $teamDatabase->getTeams();
+    }
 ?>
 <html lang="en">
 <head>
@@ -33,7 +56,33 @@
 </head>
 <body>
     <div class="container">
-        
+    <h2>Search for Team</h2>
+  <form action="#" method="post">
+      <input type="hidden" name="action" value="search" />
+      <label>Search by Field:</label>
+       <select name="fieldName">
+              <option value="">Select One</option>
+              <option value="teamName">Team Name</option>
+              <option value="division">Division</option>              
+          </select>
+       <input type="text" name="fieldValue" />
+      <button type="submit" name="Search">Search</button>     
+  </form>      
+  <h2>Sort Teams</h2>
+<form  action="#" method="post">
+    <input type="hidden" name="action" value="sort">
+       <label>Sort By Field:&nbsp;&nbsp;&nbsp;</label>
+       <select name="fieldName">
+              <option value="">Select One</option>
+              <option value="teamName">Team Name</option>
+              <option value="division">Division</option>
+              
+          </select>
+       <input type="radio" name="fieldValue" value="ASC" checked />Ascending
+       <input type="radio" name="fieldValue" value="DESC" />Descending
+       
+      <button type="submit"  name="sortTeam">Sort</button>
+</form>  
     <div class="col-sm-offset-2 col-sm-10">
         <h1>NFL Teams</h1>
         <br />

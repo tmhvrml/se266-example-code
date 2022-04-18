@@ -209,6 +209,11 @@ class Teams
         // Return results to client
         return $results;
     }
+
+    public function getDatabaseRef()
+    {
+        return $this->teamData;
+    }
  
 } // end class Teams
 ?>
