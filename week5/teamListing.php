@@ -44,6 +44,13 @@
     {
         $teamListing = $teamDatabase->getTeams();
     }
+
+    $teams  = array_column($teamListing, 'teamName');
+    $division = array_column($teamListing, 'division');
+
+    array_multisort($division, SORT_ASC, $teams, SORT_ASC, $teamListing);
+
+
 ?>
 <html lang="en">
 <head>
