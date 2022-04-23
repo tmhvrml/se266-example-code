@@ -1,7 +1,13 @@
 <?php
-    
-    include_once __DIR__ . '/model/TeamSearcher.php';
+
+    // Load helper functions (which also starts the session) then check if user is logged in
     include_once __DIR__ . '/include/functions.php';
+    if (!isUserLoggedIn())
+    {
+        header ('Location: login.php');
+    }
+
+   include_once __DIR__ . '/model/TeamSearcher.php';
 
     // Set up configuration file and create database
     $configFile = __DIR__ . '/model/dbconfig.ini';
@@ -50,29 +56,10 @@
 
     array_multisort($division, SORT_ASC, $teams, SORT_ASC, $teamListing);
 
+// Preliminaries are done, load HTML page header
+    include_once __DIR__ . "/include/header.php";
 
 ?>
-<html lang="en">
-<head>
-  <title>View NFL Teams</title> 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-<body>    
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <span class="navbar-brand">Team Listing</span>
-    </div>
-     <ul class="nav navbar-nav navbar-right">
-      <li><a href="logoff.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-    </ul>
-  </div>
-</nav>
-    <div class="container">
     <h2>Search for Team</h2>
   <form action="#" method="post">
       <input type="hidden" name="action" value="search" />

@@ -1,13 +1,14 @@
 <?php
 
     // Include functions from previous week
-    include_once __DIR__ . '/functions.php';
+    include_once __DIR__ . '/include/functions.php';
 
     // Include user database definitions
     include_once __DIR__ . '/model/Users.php';
 
+    include_once __DIR__ . "/include/header.php";
+
     // start session tracking and set logged in to false
-    session_start();
     $_SESSION['isLoggedIn'] = false;
     
     // If this is a POST, check to see if user credentials are valid.
@@ -33,7 +34,7 @@
         }   
     
         // Now we can check to see if use credentials are valid.
-        if ($userDatabase->checkLogin($username, $password)) 
+        if ($userDatabase->validateCredentials($username, $password)) 
         {
             // If so, set logged in to TRUE
             $_SESSION['isLoggedIn'] = true;
@@ -48,35 +49,8 @@
     }
 ?>
 
-
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" 
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <style type="text/css">
-        #mainDiv {margin-left: 100px; margin-top: 10;}
-        .col1 {width: 100px; float: left;}
-        .col2 {float: left;}
-        .rowContainer {clear: left; height: 40px;}
-        .error {margin-left: 100px; clear: left; height: 40px; color: red;}
-    </style>
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-<title>NFL Team Management</title>
-</head>
-<body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <span class="navbar-brand">Team Listing</span>
-    </div>
-     
-  </div>
-</nav>
 <div class="container">
-    <h2>NFL Team Listing Management</h2>
+    <h2>NFL Team Management</h2>
     <?php 
         if ($message)
         {   ?>

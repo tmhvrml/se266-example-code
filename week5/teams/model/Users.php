@@ -116,7 +116,7 @@ class Users
         return $this->userData;
     }
 
-    function checkLogin($userName, $password)
+    function validateCredentials($userName, $password)
     {
         $isValidUser = false;               // user not validated at this point
         $userTable = $this->userData;   // Alias for database PDO
