@@ -107,7 +107,7 @@
         <?php foreach ($teamListing as $row): ?>
             <tr>
                 <td>
-                    <form action="teamLinsting.php" method="post">
+                    <form action="teamListing.php" method="post">
                         <input type="hidden" name="teamId" value="<?= $row['id']; ?>" />
                         <button class="btn glyphicon glyphicon-trash" type="submit"></button>
                         <?php echo $row['teamName']; ?>
