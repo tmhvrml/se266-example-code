@@ -1,7 +1,7 @@
 <?php
 
     // Load helper functions (which also starts the session) then check if user is logged in
-    include_once __DIR__ . '/include/functions.php';
+    include_once __DIR__ . '/include/functions.php'; 
     if (!isUserLoggedIn())
     {
         header ('Location: login.php');
