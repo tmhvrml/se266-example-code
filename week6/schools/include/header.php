@@ -1,48 +1,40 @@
 <?php
-    // put your session logic here
+  // This should already be loaded, but just in case
+  include_once __DIR__ . '/functions.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Schools upload and search</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style type="text/css">
-        #mainDiv {margin-left: 100px; margin-top: 100px;}
-        .col1 {width: 100px; float: left;}
-        .col2 {float: left;}
-        .rowContainer {clear: left; height: 40px;}
-        .error {margin-left: 100px; clear: left; height: 40px; color: red;}
-        .footer {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            background-color: black;
-            color: white;
-            text-align: center;
-        }
-    </style>
+    <title>School Management</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-<body>
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <span class="navbar-brand">Schools</span>
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <span class="navbar-brand">School Listing</span>
+      </div>
+      <?php
+        // We want to hide the Logout button if the user is not logged in
+        // That means we are on the Login page
+        // Since the session should have been destroyed, we first check to see if isLoggedIn exists
+        // It may exist if an already logged in user manually loads or reloads login.php 
+        if (isUserLoggedIn()) 
+        { ?>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="logoff.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </ul>
+            <?php
+        } 
+      // end logout button code   
+      ?>
     </div>
-    <ul class="nav navbar-nav">
-        <li <?php if(basename($_SERVER['PHP_SELF']) == 'upload.php'): ?>class="active"<?php endif; ?>><a href="upload.php">Upload</a></li>
-        <li <?php if(basename($_SERVER['PHP_SELF']) == 'search.php'): ?>class="active"<?php endif; ?>><a href="search.php">Search</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="logoff.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-    </ul>
-  </div>
-</nav>
-  
-<div class="container">
+  </nav>
+  <div class="container">
 

@@ -51,6 +51,10 @@
         $teamListing = $teamDatabase->getTeams();
     }
 
+
+    // This is a quick sorting hack that does not use
+    // either the page form or a database query.
+    // It sorts based on the associative array keys.
     $teams  = array_column($teamListing, 'teamName');
     $division = array_column($teamListing, 'division');
 
