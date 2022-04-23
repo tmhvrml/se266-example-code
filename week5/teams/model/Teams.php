@@ -210,7 +210,9 @@ class Teams
         return $results;
     }
 
-    public function getDatabaseRef()
+    // Special function accessible to derived classes
+    // Allows children to make database queries.
+    protected function getDatabaseRef()
     {
         return $this->teamData;
     }

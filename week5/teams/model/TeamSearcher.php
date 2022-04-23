@@ -2,43 +2,48 @@
 
 include_once __DIR__ . '/Teams.php';
 
+// We extend the teams class so we can take advantage of work done earlier
 class TeamSearcher extends Teams
-
 {
 
-    public function __construct($configFile)
-    {
-        parent::__construct($configFile);
-    }
-
+    // Allows user to search for either team, division or both
+    // INPUT: team and/or division to search for
     function searchTeams ($team, $division) 
     {
-        $results = array();
-        $binds = array();
+        // We set up all the necessary variables here 
+        // to ensure they are scoped for the entire function
+        $results = array();             // tables of query results
+        $binds = array();               // bind array for query parameters
         $teamTable = $this->getDatabaseRef();   // Alias for database PDO
 
-        $sql =  "SELECT * FROM  teams WHERE 0=0 ";
+        // Create base SQL statement that we can append
+        // specific restrictions to
+        $sqlQuery =  "SELECT * FROM  teams WHERE 0=0 ";
 
+        // If team is set, append team query and bind parameter
         if ($team != "") {
-            $sql .= " AND teamName LIKE :team";
+            $sqlQuery .= " AND teamName LIKE :team";
             $binds['team'] = '%'.$team.'%';
         }
     
+        // If division is set, append team query and bind parameter
         if ($division != "") {
-            $sql .= " AND division LIKE :division";
+            $sqlQuery .= " AND division LIKE :division";
             $binds['division'] = '%'.$division.'%';
         }
     
-        $stmt = $teamTable->prepare($sql);
+        // Create query object
+        $stmt = $teamTable->prepare($sqlQuery);
+
+        // Perform query
         if ($stmt->execute($binds) && $stmt->rowCount() > 0) 
         {
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-             
+        
+        // Return query rows (if any)
         return $results;
-    }
-
-
+    } // end search teams
 }
 
 ?>

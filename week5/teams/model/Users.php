@@ -10,10 +10,11 @@ class Users
     // This data field represents the database
     private $userData;
 
+    // Used to salt user password
     const PASSWORD_SALT = "school-salt";
 
     //*****************************************************
-    // users class constructor:
+    // Users class constructor:
     // Instantiates a PDO object based on given URL and
     // uses that to initialize the data field $userData
     //
@@ -64,6 +65,9 @@ class Users
     // INPUT: None
     // RETURNS: Array with each entry representing a row in the table
     //          If no records in table, array is empty
+    //**************
+    //**** STUB ****
+    //**************
     public function getAllUsers() 
     {
         $results = [];                  // Array to hold results
@@ -77,6 +81,9 @@ class Users
     // Add a user to database
     // INPUT: user and divison to add
     // RETURNS: True if add is successful, false otherwise
+    //**************
+    //**** STUB ****
+    //**************
     public function addUser($user, $division) 
     {
         $addSucessful = false;         // user not added at this point
@@ -91,6 +98,9 @@ class Users
     // Delete specified user from table
     // INPUT: id of user to delete
     // RETURNS: True if update is successful, false otherwise
+    //**************
+    //**** STUB ****
+    //**************
     public function deleteUser ($id) 
     {
         $deleteSucessful = false;       // user not updated at this point
@@ -111,24 +121,33 @@ class Users
         return $results;
     }
 
+    // Special function accessible to derived classes
+    // Allows children to make database queries.
     public function getDatabaseRef()
     {
         return $this->userData;
     }
 
+    // Validates credentials user entered on form
+    // INPUT: username and password from login form
+    // RETURN: True if credentials are in database, false otherwise
+    //      Password is salted.
     function validateCredentials($userName, $password)
     {
-        $isValidUser = false;               // user not validated at this point
         $userTable = $this->userData;   // Alias for database PDO
 
+        // Create query object with username and password
         $stmt = $userTable->prepare("SELECT id FROM users WHERE userName =:userName AND userPassword = :password");
  
+        // Bind query parameter values
         $stmt->bindValue(':userName', $userName);
+        // Note that we prepend salt.
+        // You can post-pend it also, but be consistent with how the password is stored.
         $stmt->bindValue(':password', sha1( self::PASSWORD_SALT . $password));
                
+        // If we successfully execute and return a row, the crednetials are valid
         return( $stmt->execute() && $stmt->rowCount() > 0);
     }
- 
  
 } // end class users
 ?>

@@ -1,14 +1,15 @@
 <?php
 
-    // Include functions from previous week
+    // Include helper utility functions
     include_once __DIR__ . '/include/functions.php';
 
     // Include user database definitions
     include_once __DIR__ . '/model/Users.php';
 
+    // This loads HTML header and starts our session if it has not been started
     include_once __DIR__ . "/include/header.php";
 
-    // start session tracking and set logged in to false
+    // set logged in to false
     $_SESSION['isLoggedIn'] = false;
     
     // If this is a POST, check to see if user credentials are valid.
@@ -47,6 +48,7 @@
            $message = "You did not enter  correct login credentials. 🤨";
         }
     }
+
 ?>
 
 <div class="container">
@@ -81,10 +83,7 @@
         </form>
         
     </div>
+
     <?php
       include_once __DIR__ . "/include/footer.php";
-?>
-
-
-</body>
-</html>
+    ?>
