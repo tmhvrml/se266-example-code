@@ -1,13 +1,13 @@
 <?php
     
-    include_once __DIR__ . '/ExpandedTeams.php';
-    include_once __DIR__ . '/../week4/team_final/include/functions.php';
+    include_once __DIR__ . '/model/TeamSearcher.php';
+    include_once __DIR__ . '/include/functions.php';
 
     // Set up configuration file and create database
-    $configFile = __DIR__ . '/../week4/team_final/model/dbconfig.ini';
+    $configFile = __DIR__ . '/model/dbconfig.ini';
     try 
     {
-        $teamDatabase = new ExpandedTeams($configFile);
+        $teamDatabase = new TeamSearcher($configFile);
     } 
     catch ( Exception $error ) 
     {
@@ -61,7 +61,17 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body>    
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-brand">Team Listing</span>
+    </div>
+     <ul class="nav navbar-nav navbar-right">
+      <li><a href="logoff.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
     <div class="container">
     <h2>Search for Team</h2>
   <form action="#" method="post">
@@ -75,7 +85,9 @@
        <input type="text" name="fieldValue" />
       <button type="submit" name="Search">Search</button>     
   </form>      
-  <h2>Sort Teams</h2>
+  <div style="background-color: #fff0cc; padding: 10px;">
+
+  <h2>Sort Teams [<em>not implemented</em>]</h2>
 <form  action="#" method="post">
     <input type="hidden" name="action" value="sort">
        <label>Sort By Field:&nbsp;&nbsp;&nbsp;</label>
@@ -90,10 +102,11 @@
        
       <button type="submit"  name="sortTeam">Sort</button>
 </form>  
+</div>
     <div class="col-sm-offset-2 col-sm-10">
         <h1>NFL Teams</h1>
         <br />
-        <a href="../week4/team_final/updateTeam.php?action=Add">Add New Team</a>      
+        <a href="updateTeam.php?action=Add">Add New Team</a>      
     <table class="table table-striped">
         <thead>
             <tr>
@@ -114,7 +127,7 @@
                     </form>   
                 </td>
                 <td><?php echo $row['division']; ?></td> 
-                <td><a href="../week4/team_final/updateTeam.php?action=Update&teamId=<?= $row['id'] ?>">Update</a></td> 
+                <td><a href="updateTeam.php?action=Update&teamId=<?= $row['id'] ?>">Update</a></td> 
                 
             </tr>
         <?php endforeach; ?>

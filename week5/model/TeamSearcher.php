@@ -1,8 +1,8 @@
 <?php
 
-include_once __DIR__ . '/../week4/team_final/model/Teams.php';
+include_once __DIR__ . '/Teams.php';
 
-class ExpandedTeams extends Teams
+class TeamSearcher extends Teams
 
 {
 
