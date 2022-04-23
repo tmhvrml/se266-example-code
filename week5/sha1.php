@@ -1,15 +1,11 @@
 <?php
 $str = "New England Institute of Technology";
 
-echo sha1($str) . "<br />";
+echo $str . " with no salt.<br />";
+echo sha1($str) . "<br /><br />";
 
-$str = "New England Institute of Technology";
-echo sha1($str) . "<br />";
-
-
+echo $str . " with SECCRET salt.<br />";
 $salt = "SECRET";
-
-
 echo sha1($salt . $str) . "<br />";
  
  ?>

@@ -1,3 +1,3 @@
 <?php
-    header('Location: login.php');
+   include __DIR__ . '/../include/listFiles.php';
 ?>

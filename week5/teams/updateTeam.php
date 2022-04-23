@@ -126,7 +126,7 @@
 
   </form>
   
-  <div class="col-sm-offset-2 col-sm-10"><a href="./view.php">View Teams</a></div>
+  <div class="col-sm-offset-2 col-sm-10"><a href="./teamListing.php">View Teams</a></div>
 </div>
 </div>
 

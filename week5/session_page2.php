@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/car.php';
+include __DIR__ . '/../week3/Car.php';
 session_start();
 ?>
 
@@ -11,8 +11,8 @@ session_start();
 <h2>Cars</h2>
 
 <?php
-    foreach ($_SESSION['cars'] as $c) {
-        $c->drive();
+    foreach ($_SESSION['cars'] as $sessionCar) {
+        echo $sessionCar->drive();
     }
 ?>
 

@@ -1,6 +1,6 @@
 <?php
-    include __DIR__ . '/car.php';
-    include __DIR__ . '/include/functions.php';
+    include __DIR__ . '/../week3/Car.php';
+    include __DIR__ . '/teams/include/functions.php';
     session_start();
 
     // sessions can be simple
@@ -12,9 +12,9 @@
     
     // or complex. Cars is an array of objects
     $_SESSION['cars'] = [
-        new Car ('Toyota Yaris'),
-        new Car ('Kia Rio'),
-        new Car ('Kia Sorrento')
+        new Car('Toyota Yaris'),
+        new Car('Kia Rio'),
+        new Car('Kia Sorrento')
     ];
 
     
