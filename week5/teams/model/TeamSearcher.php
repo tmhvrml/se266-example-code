@@ -18,17 +18,33 @@ class TeamSearcher extends Teams
 
         // Create base SQL statement that we can append
         // specific restrictions to
-        $sqlQuery =  "SELECT * FROM  teams WHERE 0=0 ";
-
+        $sqlQuery =  "SELECT * FROM  teams WHERE  ";
+$isFirstClause = true;
         // If team is set, append team query and bind parameter
         if ($team != "") {
-            $sqlQuery .= " AND teamName LIKE :team";
+            if ($isFirstClause)
+            {
+                $isFirstClause = false;
+            }
+            else
+            {
+                $sqlQuery .= " AND ";
+            }
+            $sqlQuery .= "  teamName LIKE :team";
             $binds['team'] = '%'.$team.'%';
         }
     
         // If division is set, append team query and bind parameter
         if ($division != "") {
-            $sqlQuery .= " AND division LIKE :division";
+            if ($isFirstClause)
+            {
+                $isFirstClause = false;
+            }
+            else
+            {
+                $sqlQuery .= " AND ";
+            }
+            $sqlQuery .= "  division LIKE :division";
             $binds['division'] = '%'.$division.'%';
         }
     
