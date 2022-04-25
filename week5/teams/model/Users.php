@@ -84,11 +84,27 @@ class Users
     //**************
     //**** STUB ****
     //**************
-    public function addUser($user, $division) 
+    public function addUser($user, $password) 
     {
         $addSucessful = false;         // user not added at this point
         $userTable = $this->userData;   // Alias for database PDO
         
+        $salt = random_bytes(32);
+
+        $stmt = $userTable->prepare("INSERT INTO users SET userName = :user, userPassword = :pwd, userSalt = :salt");
+
+        // Bind query parameters to method parameter values
+        $boundParams = array(
+            ":user" => $user,
+            ":password" => sha1($salt . $password),
+            ":salt" => $salt
+        );       
+        
+         // Execute query and check to see if rows were returned 
+         // If so, the team was successfully added
+        $addSucessful = ($stmt->execute($boundParams) && $stmt->rowCount() > 0);
+
+
          // Return status to client
          return $addSucessful;
     }
@@ -134,19 +150,30 @@ class Users
     //      Password is salted.
     function validateCredentials($userName, $password)
     {
+        $isValidUser = false;
         $userTable = $this->userData;   // Alias for database PDO
 
         // Create query object with username and password
-        $stmt = $userTable->prepare("SELECT id FROM users WHERE userName =:userName AND userPassword = :password");
+        // $stmt = $userTable->prepare("SELECT id FROM users WHERE userName =:userName AND userPassword = :password");
+        $stmt = $userTable->prepare("SELECT userPassword, userSalt FROM users WHERE userName =:userName");
  
         // Bind query parameter values
         $stmt->bindValue(':userName', $userName);
+
+        $foundUser = ($stmt->execute() && $stmt->rowCount() > 0);
+
+        if ($foundUser)
+        {
+            $results = $stmt->fetch(PDO::FETCH_ASSOC); 
+            $hashedPassword = sha1(  $results['userSalt'] . $password);
+            $isValidUser = ($hashedPassword == $results['userPassword']);
+        }
         // Note that we prepend salt.
         // You can post-pend it also, but be consistent with how the password is stored.
-        $stmt->bindValue(':password', sha1( self::PASSWORD_SALT . $password));
+       // $stmt->bindValue(':password', sha1( self::PASSWORD_SALT . $password));
                
         // If we successfully execute and return a row, the crednetials are valid
-        return( $stmt->execute() && $stmt->rowCount() > 0);
+        return $isValidUser;
     }
  
 } // end class users
