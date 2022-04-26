@@ -164,7 +164,7 @@ class Teams
     //*****************************************************
     // Delete specified team from table
     // INPUT: id of team to delete
-    // RETURNS: True if update is successful, false otherwise
+    // RETURNS: True if delete is successful, false otherwise
     public function deleteTeam ($id) 
     {
         $deleteSucessful = false;       // Team not updated at this point
