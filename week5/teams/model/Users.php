@@ -101,7 +101,7 @@ class Users
         );       
         
          // Execute query and check to see if rows were returned 
-         // If so, the team was successfully added
+         // If so, the user was successfully added
         $addSucessful = ($stmt->execute($boundParams) && $stmt->rowCount() > 0);
 
 
@@ -165,7 +165,7 @@ class Users
         if ($foundUser)
         {
             $results = $stmt->fetch(PDO::FETCH_ASSOC); 
-            $hashedPassword = sha1(  $results['userSalt'] . $password);
+            $hashedPassword = sha1( $results['userSalt'] . $password);
             $isValidUser = ($hashedPassword == $results['userPassword']);
         }
         // Note that we prepend salt.
