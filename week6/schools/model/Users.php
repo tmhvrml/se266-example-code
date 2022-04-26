@@ -113,7 +113,7 @@ class Users
     //*****************************************************
     // Delete specified user from table
     // INPUT: id of user to delete
-    // RETURNS: True if update is successful, false otherwise
+    // RETURNS: True if delete is successful, false otherwise
     //**************
     //**** STUB ****
     //**************

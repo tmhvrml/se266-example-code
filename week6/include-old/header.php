@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>NFL Team Management</title>
+    <title>School Management</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -18,7 +18,7 @@
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <span class="navbar-brand">Team Listing</span>
+        <span class="navbar-brand">School Listing</span>
       </div>
       <?php
         // We want to hide the Logout button if the user is not logged in
