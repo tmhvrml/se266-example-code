@@ -86,11 +86,11 @@ class getSchools
                 $city = str_replace("'", "''", htmlspecialchars($row[1]));
                 $state = str_replace("'", "''", htmlspecialchars($row[2]));
 
-                $sql[] = "('" . $school . "' , '" . $city . "' , '" . $state. "')";
+               $sql[] = "('" . $school . "' , '" . $city . "' , '" . $state. "')";
                 // 1,000 records at a time
                 if ($i % 1000 == 0) {
-                    $db->query('INSERT INTO schools (schoolName, schoolCity, schoolState) VALUES '.implode(',', $sql));
-                    $sql = array();
+                   $db->query('INSERT INTO schools (schoolName, schoolCity, schoolState) VALUES '.implode(',', $sql));
+                     $sql = array();
                 }
             }
             if (count($sql)) {
