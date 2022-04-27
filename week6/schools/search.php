@@ -1,9 +1,9 @@
 <?php
-    include_once __DIR__ . "/model/model_schools.php";
+    include_once __DIR__ . "/model/Schools.php";
     include_once __DIR__ . "/include/functions.php";
    
     
-     $schoolName = "";
+    $schoolName = "";
     $city = "";
     $state = "";
     if (isPostRequest()) {

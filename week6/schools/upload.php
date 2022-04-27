@@ -1,8 +1,9 @@
 <?php
-    include_once __DIR__ . "/model/model_schools.php";
+    include_once __DIR__ . "/model/Schools.php";
     include_once __DIR__ . "/include/functions.php";
     
-    if (isset ($_FILES['file1'])) {
+    if (isset ($_FILES['fileToUpload'])) 
+    {
         // upload the file to uploads folder and then call insertSchoolsFromFile 
         
         //redirect to search.php
@@ -16,9 +17,8 @@
     </p>
 
     <form action="upload.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="file1">
+        <input type="file" name="fileToUpload">
         <input type="submit" value="Upload">
-
     </form>    
 
 <?php
