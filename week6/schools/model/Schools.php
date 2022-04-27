@@ -65,7 +65,7 @@ class getSchools
 
         $insertSucessful = false;           // file records are not added at this point
         $schoolTable = $this->schoolData;   // Alias for database PDO
-        $i = 0;
+        $schoolCounter = 0;                 // Counter for rows read from file
        
         // We only proceed if the file exists
         if (file_exists($fname))
@@ -73,32 +73,38 @@ class getSchools
             // Clear current records in table so there are no duplicates
             deleteAllSchools();
 
-            // Open file and ignore first line (header row)
+            // Open file 
             $file = fopen ($fname, 'rb');
 
-            // ignore first line by loading and not using it
+            // ignore first line (CSV header row) by loading and not using it
             $row = fgetcsv($file);
 
-            
-            while (!feof($file) && $i++ < 10000) {
+            // Loop through entire file
+            while (!feof($file)) 
+            {
+                // Get a row from the CSV file
                 $row = fgetcsv($file);
+
+                // Convert any special character in the fields into HTML characters
                 $school = str_replace("'", "''", htmlspecialchars($row[0]));
                 $city = str_replace("'", "''", htmlspecialchars($row[1]));
                 $state = str_replace("'", "''", htmlspecialchars($row[2]));
 
-               $sql[] = "('" . $school . "' , '" . $city . "' , '" . $state. "')";
-                // 1,000 records at a time
+                // Create the string of values for the INSERT
+                $schoolToInsert = "('" . $school . "' , '" . $city . "' , '" . $state. "')";
+
+
                 if ($i % 1000 == 0) {
-                   $db->query('INSERT INTO schools (schoolName, schoolCity, schoolState) VALUES '.implode(',', $sql));
+                   $schoolTable->query("INSERT INTO schools (schoolName, schoolCity, schoolState) VALUES ". $schoolToInsert);
                      $sql = array();
                 }
             }
-            if (count($sql)) {
-                $db->query('INSERT INTO schools (schoolName, schoolCity, schoolState) VALUES '.implode(',', $sql));
-            }
+           // if (count($sql)) {
+           //     $db->query('INSERT INTO schools (schoolName, schoolCity, schoolState) VALUES '.implode(',', $sql));
+           // }
         }
         return $insertSucessful;
-      }
+      } // end insertSchools from File
    
  // Database access & modify methods are listed below. 
 // General structure of each method is:
@@ -135,7 +141,8 @@ class getSchools
        $results = $stmt->fetch(PDO::FETCH_ASSOC);   
        return($results['schoolCount']);
    }
-   public function getSchools ($name, $city, $state) {
+   public function getSelectedSchools ($name, $city, $state) 
+   {
        global $db;
        
        $binds = array();
