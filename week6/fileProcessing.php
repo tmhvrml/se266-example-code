@@ -10,17 +10,17 @@ var_dump ($names); // shows an array
 echo "<p> </p>";
 // Opens the file for reading, in "binary" format
 // (as opposed to 't' text format)
-$file = fopen ('upload/names.txt', 'rb');
+$nameFileRef = fopen ('upload/names.txt', 'rb');
 
 // Loop until the end of the file
-while (!feof($file)) 
+while (!feof($nameFileRef)) 
 {
    // Get next line of the file and echo it out
-   $name = fgets($file);
+   $name = fgets($nameFileRef);
    echo $name . "*** <br />";
 }
 
-// Define max number of lines to read in
+// Define max number of lines to read in for testing
 define ("MAX_SCHOOLS", 10);
 echo "<p> </p>";
 
@@ -32,14 +32,14 @@ if (!file_exists("upload/schools.csv"))
 }
 
 // Open CSV file for reading
-$file = fopen ('upload/schools.csv', 'rb');
+$schoolFileRef = fopen ('upload/schools.csv', 'rb');
 
 
 $currentLine = 0;
-while (!feof($file) && $currentLine < MAX_SCHOOLS )
+while (!feof($schoolFileRef) && $currentLine < MAX_SCHOOLS )
  {
    // Read next line of CSV file and echo it out
-   $school = fgetcsv($file);
+   $school = fgetcsv($schoolFileRef);
    
    echo $school[0] . "  ---  " . $school[1] . "<br />";
 

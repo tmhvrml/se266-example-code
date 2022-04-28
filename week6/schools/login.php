@@ -1,16 +1,33 @@
 <?php
 
-    include_once __DIR__ . "/model/Users.php";
-    include_once __DIR__ . "/include/functions.php";
+    // Include helper utility functions
+    include_once __DIR__ . '/include/functions.php';
 
+    // Include user database definitions
+    include_once __DIR__ . '/model/Users.php';
 
-    if (isPostRequest()) {
-        $username = filter_input(INPUT_POST, 'userName');
-        $password = filter_input(INPUT_POST, 'password');
-       
-       // your logic here
+    // This loads HTML header and starts our session if it has not been started
+    include_once __DIR__ . "/include/header.php";
+
+    // set logged in to false
+    $_SESSION['isLoggedIn'] = false;
     
+    // If this is a POST, check to see if user credentials are valid.
+    // First we need to gab the crednetials form the form 
+    //      and create a user database object
+    $message = "";
+    if (isPostRequest()) 
+    {
+
+    //*******************************************************************//
+    //************     TODO     *****************************************//
+    //
+    // Implement your login logic here
+    //
+    //*******************************************************************//
+ 
     }
+
 ?>
 
 <!DOCTYPE html>

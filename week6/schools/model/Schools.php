@@ -5,7 +5,7 @@
 // This class provides a wrapper for the database 
 // All methods work on the schools table
 
-class getSchools
+class Schools
 {
 
     // This data field represents the database
@@ -60,30 +60,30 @@ class getSchools
     //       Field order: School Name, City, State Abbreviation
     // RETURNS: True if file opened and schools inserted into table
     //               False otherwise
-    public function insertSchoolsFromFile ($fname) 
+    public function insertSchoolsFromFile ($fileName) 
     {
-
         $insertSucessful = false;           // file records are not added at this point
         $schoolTable = $this->schoolData;   // Alias for database PDO
         $schoolCounter = 0;                 // Counter for rows read from file
        
         // We only proceed if the file exists
-        if (file_exists($fname))
+        if (file_exists($fileName))
         {
             // Clear current records in table so there are no duplicates
-            deleteAllSchools();
+            $this->deleteAllSchools();
 
             // Open file 
-            $file = fopen ($fname, 'rb');
+            $schoolFileRef = fopen($fileName, 'rb');
 
             // ignore first line (CSV header row) by loading and not using it
-            $row = fgetcsv($file);
+            $row = fgetcsv($schoolFileRef);
 
+            $schoolCounter = 0;
             // Loop through entire file
-            while (!feof($file)) 
+            while (!feof($schoolFileRef)) 
             {
                 // Get a row from the CSV file
-                $row = fgetcsv($file);
+                $row = fgetcsv($schoolFileRef);
 
                 // Convert any special character in the fields into HTML characters
                 $school = str_replace("'", "''", htmlspecialchars($row[0]));
@@ -93,15 +93,18 @@ class getSchools
                 // Create the string of values for the INSERT
                 $schoolToInsert = "('" . $school . "' , '" . $city . "' , '" . $state. "')";
 
-
-                if ($i % 1000 == 0) {
+                // This if-statement is here to filter the number of records added to the database
+                // When testing, you may not want to add *all* records for time's sake
+                if ($schoolCounter++ % self::MAX_INSERT_ROWS == 0) 
+                {
+                    // Add the school to the database
                    $schoolTable->query("INSERT INTO schools (schoolName, schoolCity, schoolState) VALUES ". $schoolToInsert);
-                     $sql = array();
                 }
             }
-           // if (count($sql)) {
-           //     $db->query('INSERT INTO schools (schoolName, schoolCity, schoolState) VALUES '.implode(',', $sql));
-           // }
+ 
+            // All done, for security reasons, close and delete the CSV file
+           fclose($schoolFileRef);
+           unlink($fileName);
         }
         return $insertSucessful;
       } // end insertSchools from File
@@ -114,77 +117,120 @@ class getSchools
 //  4) Execute statement and check for returned rows
 //  5) Return results if needed.
 
-//*****************************************************
+    //*****************************************************
     // Delete all teams from table
     // RETURNS: True if delete is successful, false otherwise
-    public function deleteAllSchools () 
+    public function deleteAllSchools() 
     {
-            $deleteSucessful = false;       // Team not updated at this point
+            $deleteSucessful = false;           // Team not updated at this point
             $schoolTable = $this->schoolData;   // Alias for database PDO
 
             // Preparing SQL query    
             $stmt = $schoolTable->query("DELETE FROM schools;");
 
             // Execute query and check to see if rows were returned 
-            // If so, the team was successfully deleted      
+            // If so, the schools were successfully deleted      
             $deleteSucessful = ($stmt->execute() && $stmt->rowCount() > 0);
 
             // Return status to client           
             return $deleteSucessful;
     }
    
-  
-   public function getSchoolCount() {
-       global $db;
-
-       $stmt = $db->query("SELECT COUNT(*) AS schoolCount FROM schools");
-       $results = $stmt->fetch(PDO::FETCH_ASSOC);   
-       return($results['schoolCount']);
-   }
-   public function getSelectedSchools ($name, $city, $state) 
+    //*****************************************************
+    // Get a count of schools int he database
+    // RETURNS: how many schools were uploaded were uploaded to DB
+   public function getSchoolCount() 
    {
-       global $db;
-       
-       $binds = array();
-       $sql = "SELECT id, schoolName, schoolCity, schoolState FROM schools WHERE 0=0 ";
-       if ($name != "") {
-            $sql .= " AND schoolName LIKE :schoolName";
+        $schoolTable = $this->schoolData;   // Alias for database PDO
+
+        // Build SQL query, notice we alias the count result so we can access it
+        $stmt = $schoolTable->query("SELECT COUNT(*) AS schoolCount FROM schools");
+
+        // Grab the results into an associative array
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);   
+        
+        // return the count of schools in DB
+        return $results['schoolCount'];
+   } // end getSchoolCount
+
+
+     //*****************************************************
+    // Allows user to search for either a school name, city, state or any combination
+    // INPUT: school name, host city and state to search for
+    // RETURNS: table of records of schools matching the criteria
+   public function getSelectedSchools($name, $city, $state) 
+   {
+       $results = array();                  // Empty results table 
+       $binds = array();                    // Empty bind array
+       $isFirstClause = true;               // Next WHERE clause is first
+       $schoolTable = $this->schoolData;   // Alias for database PDO
+
+       // Here is the base SQL statement to select all schools
+       $sql = "SELECT id, schoolName, schoolCity, schoolState FROM schools ";
+
+        // Now we check for any parameters and build the WHERE clause filters
+        // First, school name:
+        if (isset($name)) 
+        {
+            if ($isFirstClause)
+            {
+                $sql .= " WHERE ";
+                $isFirstClause = false;
+            }
+            else
+            {
+                $sql .= " AND ";
+            }
+            $sql .= " schoolName LIKE :schoolName";
             $binds['schoolName'] = '%'.$name.'%';
-       }
+        }
       
-       if ($city != "") {
-           $sql .= " AND schoolCity LIKE :city";
+        // Next, city name:
+        if (isset($city)) 
+        {
+            if ($isFirstClause)
+            {
+                $sql .= " WHERE ";
+                $isFirstClause = false;
+            }
+            else
+            {
+                $sql .= " AND ";
+            }
+            $sql .= "  schoolCity LIKE :city";
            $binds['city'] = '%'.$city.'%';
        }
-       if ($state != "") {
-           $sql .= " AND schoolState LIKE :state";
+
+        // Finally, state:
+        if (isset($state)) 
+        {
+            if ($isFirstClause)
+            {
+                $sql .= " WHERE ";
+                $isFirstClause = false;
+            }
+            else
+            {
+                $sql .= " AND ";
+            }
+           $sql .= "  schoolState LIKE :state";
            $binds['state'] = '%'.$state.'%';
        }
+
+       // Let's sort whatever records come back
+       $sql .= " ORDER BY schoolState, schoolName";
        
-       $stmt = $db->prepare($sql);
+       // Prepare the SQL statement object
+       $stmt = $schoolTable->prepare($sql);
       
-        $results = array();
+       // Execute the query and fetch the results into a 
+       // table of associative arrays
         if ($stmt->execute($binds) && $stmt->rowCount() > 0) {
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
-        return ($results);
-   }
-   
-   
- 
-}
-// Test code to make sure these functions work
-// $schools = getSchools ('New England', '', 'RI');
 
-// var_dump ($schools);
+        // Return the results
+        return $results;
+   }    // end getSelected Schools
 
-// $b = checkLogin('donald', 'duck');
-// if ($b) echo "Logged in"; else echo "Not logged in";
-
-// insertSchoolsFromFile('../uploads/schools.csv');
-// $count= getSchoolCount();
-// echo $count;
-
-// if ($result) echo "Logged in"; else echo "Not logged in";
-
-   
+} // end Schools class
