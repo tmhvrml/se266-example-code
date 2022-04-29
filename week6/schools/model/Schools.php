@@ -60,7 +60,7 @@ class Schools
     //       Field order: School Name, City, State Abbreviation
     // RETURNS: True if file opened and schools inserted into table
     //               False otherwise
-    public function insertSchoolsFromFile ($fileName) 
+    public function insertSchoolsFromFile($fileName) 
     {
         $insertSucessful = false;           // file records are not added at this point
         $schoolTable = $this->schoolData;   // Alias for database PDO
@@ -232,5 +232,23 @@ class Schools
         // Return the results
         return $results;
    }    // end getSelected Schools
+
+   // Destructor to clean up any memory allocation
+   public function __destruct() 
+   {
+       // Mark the PDO for deletion
+       $this->schoolData = null;
+
+        // If we had a datafield that was a fileReference
+        // we should ensure the file is closed
+        // We don't have that here since schoolFileRef was local to 
+        // the method insertSchoolsFromFile   
+        // if($this->myFileRef)
+        // {
+        //     fclose($this->myFileRef);
+        // }
+
+   }
+
 
 } // end Schools class

@@ -216,6 +216,14 @@ class Teams
     {
         return $this->teamData;
     }
+
+    // Destructor to clean up any memory allocation
+    public function __destruct() 
+    {
+        // Mark the PDO for deletion
+        $this->teamData = null;
+    }
+
  
 } // end class Teams
 ?>

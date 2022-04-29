@@ -175,6 +175,15 @@ class Users
         // If we successfully execute and return a row, the crednetials are valid
         return $isValidUser;
     }
+
+    // Destructor to clean up any memory allocation
+    public function __destruct() 
+    {
+        // Mark the PDO for deletion
+        $this->userData = null;
+
+     }
+
  
 } // end class users
 ?>
