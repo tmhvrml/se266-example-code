@@ -224,6 +224,5 @@ class Teams
         $this->teamData = null;
     }
 
- 
 } // end class Teams
 ?>

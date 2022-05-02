@@ -45,7 +45,7 @@ while (!feof($schoolFileRef) && $currentLine < MAX_SCHOOLS )
    echo $school[0] . "  ---  " . $school[1] . "<br />";
 
    // Increment line counter
-   $currentLinei++;
+   $currentLine++;
 }
 
 ?>
