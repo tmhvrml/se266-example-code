@@ -126,11 +126,11 @@ class Schools
             $schoolTable = $this->schoolData;   // Alias for database PDO
 
             // Preparing SQL query    
-            $stmt = $schoolTable->query("DELETE FROM schools;");
+            $deleteSucessful = $schoolTable->query("DELETE FROM schools;");
 
             // Execute query and check to see if rows were returned 
             // If so, the schools were successfully deleted      
-            $deleteSucessful = ($stmt->execute() && $stmt->rowCount() > 0);
+           // $deleteSucessful = ($stmt->execute() && $stmt->rowCount() > 0);
 
             // Return status to client           
             return $deleteSucessful;
