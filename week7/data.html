@@ -11,9 +11,9 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
               function insertVote() 
-              {                
-                document.getElementById("msg").innerHTML ="I'm here!!";
-                alert(this.dataset.characterId);
+              { 
+                 alert(this.dataset.characterId);
+                  document.getElementById("msg").innerHTML ="You selected button #" + this.dataset.characterId ;
               }
         </script>
             
@@ -26,4 +26,14 @@ and open the template in the editor.
         </div>
         <div id="msg"></div>
     </body>
+
+    <script>
+         (function() {
+        document.querySelectorAll('.btn').forEach(item => {
+        item.addEventListener('click', insertVote);
+      })
+      
+      getVotes ();
+    })();
+    </script>
 </html>
