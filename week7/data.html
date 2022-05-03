@@ -12,33 +12,18 @@ and open the template in the editor.
         <script>
               function insertVote() 
               {                
-                  alert( this.dataset.characterId);
+                document.getElementById("msg").innerHTML ="I'm here!!";
+                alert(this.dataset.characterId);
               }
         </script>
             
     </head>
     <body>
         <div style="margin-left:50px; margin-top:50px;">
-            <input type="button"  class="btn" data-character-id="1"  onclick="insertVote()" value="Vote for Donald Duck">&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button"  class="btn" data-character-id="1"  onclick="insertVote()" value="Vote for Donald Duck" >&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="button"  class="btn" data-character-id="2"  onclick="insertVote()" value="Vote for Mickey Mouse">&nbsp;&nbsp;&nbsp;&nbsp;
             <input type="button"  class="btn" data-character-id="3"  onclick="insertVote()" value="Vote for Goofy">
-
         </div>
-        
+        <div id="msg"></div>
     </body>
 </html>
-
-<script>
-    (function() 
-    {
-    
-         document.querySelectorAll('.btn').forEach(item => 
-        {
-            item.addEventListener('click', insertVote);
-        })
-         
-    })();
-
-</script>
-    
-    
