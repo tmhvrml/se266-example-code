@@ -6,8 +6,8 @@
         $db = dbconnect();
 
         $stmt = $db->prepare("SELECT schoolState, COUNT(*) AS schoolCount from schools
-                            GROUP BY schoolstate
-                            ORDER BY COUNT(*) DESC LIMIT 10");
+                                                    GROUP BY schoolstate
+                                                    ORDER BY COUNT(*) DESC LIMIT 10");
 
       
         $schools = array();
