@@ -1,15 +1,19 @@
 <?php
 
-    include __DIR__ . '/model/model_schools.php';
-    include  __DIR__ . '/include/colorFunctions.php'; 
-    
-    $schools = getSchoolSummaryInfo();
+include_once __DIR__ . "/model/SchoolStats.php";
+//include_once __DIR__ . "/include/functions.php";
+ include  __DIR__ . '/include/colorFunctions.php'; 
+
+
+ $schoolDatabase = new SchoolStats(__DIR__ . "/model/dbconfig.ini");
+
+    $schools =  $schoolDatabase->getSchoolSummaryInfo();
     
    
     $results = array();
     $results[0] = array(); // list states
-    $results[1] = array (); // number of schools in each state
-    $results[2] = getRandomColorArray (10); // colors
+    $results[1] = array(); // number of schools in each state
+    $results[2] = getRandomColorArray(20); // colors
     
     foreach ($schools as $s) {
         
@@ -18,7 +22,8 @@
         
     }
     
-   // var_dump ($results);
+ //  var_dump ($results);
    echo json_encode($results);
-   
+
+
 ?>

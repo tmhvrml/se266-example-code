@@ -19,7 +19,7 @@ class TeamSearcher extends Teams
         // Create base SQL statement that we can append
         // specific restrictions to
         $sqlQuery =  "SELECT * FROM  teams   ";
-$isFirstClause = true;
+        $isFirstClause = true;
         // If team is set, append team query and bind parameter
         if ($team != "") {
             if ($isFirstClause)
