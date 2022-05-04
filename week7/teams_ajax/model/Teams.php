@@ -76,7 +76,7 @@ class Teams
             // if successful, grab all rows
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);                 
         }         
-
+        
         // Return results to client
         return $results;
     }

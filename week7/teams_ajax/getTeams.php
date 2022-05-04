@@ -14,6 +14,7 @@
     }   
 
     // Encode the getTeams response as JSON and return it
-    echo json_encode($teamDatabase->getTeams());
+    $results = $teamDatabase->getTeams();
+    echo json_encode($results);
 
 ?>

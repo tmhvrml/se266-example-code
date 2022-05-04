@@ -32,7 +32,7 @@
                 const ajaxURL = 'insert_team.php';
 
                 // Construct JSON to send to the PHP router page
-                const ajaxJSONdata = { team_name: team_name, division: division };
+                var ajaxJSONdata = { team_name: team_name, division: division };
 
                 // This holds the response from the JSON query
                 var teamIDresponse = null;
@@ -40,7 +40,7 @@
                 try 
                 {
                     // Make the async call with fetch
-                    const response = await fetch(ajaxURL,   // URL of PHP router page
+                    response = await fetch(ajaxURL,   // URL of PHP router page
                                     {
                                         method: 'POST',                     // How to make the request
                                         body: JSON.stringify(ajaxJSONdata), // JSON to send
@@ -68,15 +68,15 @@
            
             // This is called on page load
             //  Uses an async call
-            async function loadPage(event) 
+            async function loadPage() 
             {
 
                 // Identify PHP page to process request (router)
-                const ajaxURL = 'insert_team.php';
+                const ajaxURL = 'getTeams.php';
 
                 // We are not sending JSON to  PHP router page
                 // Just displaying what we get back
-                const ajaxJSONdata = null;
+                var ajaxJSONdata = null;
 
                 try 
                 {
@@ -90,16 +90,16 @@
                 } 
                 catch (error) 
                 {
-                    console.error (error);          
+                    console.error(error);          
                 }
                 
                 // Send the AJAX response (the table with team names and divisions)
                 // to the function displayTeams to display
-                displayTeams(jajaxJSONdatason);
+                displayTeams(ajaxJSONdata);
             }
         </script>               
     </head>
-    
+
     <body onload="loadPage()">
         <div id="add_team_div">
             <h4>Add Team</h4>
