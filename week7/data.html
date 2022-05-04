@@ -10,30 +10,28 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script>
-              function insertVote() 
+              function insertVote(caller) 
               { 
-                 alert(this.dataset.characterId);
-                  document.getElementById("msg").innerHTML ="You selected button #" + this.dataset.characterId ;
+                  document.getElementById("msg").innerHTML ="You selected button #" + caller.dataset.characterId ;
               }
         </script>
             
     </head>
     <body>
         <div style="margin-left:50px; margin-top:50px;">
-            <input type="button"  class="btn" data-character-id="1"  onclick="insertVote()" value="Vote for Donald Duck" >&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="button"  class="btn" data-character-id="2"  onclick="insertVote()" value="Vote for Mickey Mouse">&nbsp;&nbsp;&nbsp;&nbsp;
-            <input type="button"  class="btn" data-character-id="3"  onclick="insertVote()" value="Vote for Goofy">
+            <input type="button"  class="btn" data-character-id="1"  
+                                                onclick="insertVote(this)" 
+                                                value="Vote for Donald Duck" >&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <input type="button"  class="btn" data-character-id="2"  
+                                                onclick="insertVote(this)" 
+                                                value="Vote for Mickey Mouse">&nbsp;&nbsp;&nbsp;&nbsp;
+                                                
+            <input type="button"  class="btn" data-character-id="3"  
+                                                onclick="insertVote(this)" 
+                                                value="Vote for Goofy">
         </div>
         <div id="msg"></div>
     </body>
 
-    <script>
-         (function() {
-        document.querySelectorAll('.btn').forEach(item => {
-        item.addEventListener('click', insertVote);
-      })
-      
-      getVotes ();
-    })();
-    </script>
 </html>

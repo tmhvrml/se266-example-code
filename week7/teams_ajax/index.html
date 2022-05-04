@@ -9,65 +9,97 @@
                body {margin-left: 50px; margin-top:50px;}
            </style>
          <script>
+            // Display all teams and their division
+            //  Functio is passed a table of associative array rows
+            function displayTeams(teams) 
+            {
+                for (i = 0; i < teams.length; i++) 
+                {
+                    $("#team_list").append('<li>' + teams[i].teamName + ' [' + teams[i].division + ']</li>');
+                }
+            }
            
-              function displayTeams(teams) 
-              {
-                   for (i = 0; i < teams.length; i++) 
-                   {
-                       $("#team_list").append('<li>' + teams[i].teamName + ' [' + teams[i].division + ']</li>');
-                   }
-               }
-           
-               async function add_team () 
-               {
-                   var team_name = document.getElementById("team_name").value;
-                   var division = document.getElementById("division").value;
-                   
-                   const ajaxURL = 'insert_team.php';
-                   const ajaxJSONdata = { team_name: team_name, division: division };
-                   var teamID = null;
-                   try 
-                   {
-                        const response = await fetch(ajaxURL, 
-                                        {
-                                            method: 'POST', 
-                                            body: JSON.stringify(ajaxJSONdata), 
-                                            headers: 
-                                            {
-                                                'Content-Type': 'application/json'
-                                            }
-                                        }); // end ajax fetch
-                         id = await response.json();
-                  }
-                  catch (error) 
-                  {
-                       console.error (error);
-                  }
-                                       
-                     
-                  $("#team_list").append('<li>' + team_name + ' [' + division + ']</li>');
-                  document.getElementById("message").innerHTML = "Added Team: " + team_name + ", Division: " + division + " -> Id: " + id;
-                
-               }
-           
-               async function loadPage(event) 
-               {
-                   const ajaxURL = 'getTeams.php';
-                   let json = null;
-                   try {
-                       const response = await fetch(ajaxURL, 
-                                            {
-                                                method: 'GET'
-                                            });
-                        json = await response.json();
-                     } catch (error) {
-                         console.error (error);          
-                     }
+            // Asynchronously add a team at the end of the listing
+            //  Does not require page reload
+            //  Team is added to database by PHP router page
+            async function add_team() 
+            {
+                // Grab field values to add for team name and division
+                var team_name = document.getElementById("team_name").value;
+                var division = document.getElementById("division").value;
 
-                     displayTeams (json);
-               }
+                // Identify PHP page to process request (router)
+                const ajaxURL = 'insert_team.php';
+
+                // Construct JSON to send to the PHP router page
+                const ajaxJSONdata = { team_name: team_name, division: division };
+
+                // This holds the response from the JSON query
+                var teamIDresponse = null;
+
+                try 
+                {
+                    // Make the async call with fetch
+                    const response = await fetch(ajaxURL,   // URL of PHP router page
+                                    {
+                                        method: 'POST',                     // How to make the request
+                                        body: JSON.stringify(ajaxJSONdata), // JSON to send
+                                        headers: 
+                                        {
+                                            'Content-Type': 'application/json'  // Content type is important
+                                        }
+                                    }); // end ajax fetch
+
+                    // Wait for the JSON response
+                    teamIDresponse = await response.json();
+                }
+                catch (error) 
+                {   // In case of whoops
+                    console.error (error);
+                }
+                                       
+                // Append the team to the team listing
+                $("#team_list").append('<li>' + team_name + ' [' + division + ']</li>');
+
+                // Give feedback to user that team was added to list.
+                document.getElementById("message").innerHTML = "Added Team: " + team_name + ", Division: " + division + " -> Id: " + teamIDresponse;
+                
+            }
+           
+            // This is called on page load
+            //  Uses an async call
+            async function loadPage(event) 
+            {
+
+                // Identify PHP page to process request (router)
+                const ajaxURL = 'insert_team.php';
+
+                // We are not sending JSON to  PHP router page
+                // Just displaying what we get back
+                const ajaxJSONdata = null;
+
+                try 
+                {
+                    const response = await fetch(ajaxURL, 
+                                        {
+                                             method: 'GET'
+                                        });
+
+                    // Wait for the JSON response
+                    ajaxJSONdata = await response.json();
+                } 
+                catch (error) 
+                {
+                    console.error (error);          
+                }
+                
+                // Send the AJAX response (the table with team names and divisions)
+                // to the function displayTeams to display
+                displayTeams(jajaxJSONdatason);
+            }
         </script>               
     </head>
+    
     <body onload="loadPage()">
         <div id="add_team_div">
             <h4>Add Team</h4>
