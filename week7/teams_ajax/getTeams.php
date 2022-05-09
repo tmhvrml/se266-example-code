@@ -1,18 +1,20 @@
 <?php
 
-include_once __DIR__ . '/model/Teams.php';
+    include_once __DIR__ . '/model/Teams.php';
 
-// Set up configuration file and create database
-$configFile = __DIR__ . '/model/dbconfig.ini';
-try 
-{
-    $teamDatabase = new Teams($configFile);
-} 
-catch ( Exception $error ) 
-{
-    echo "<h2>" . $error->getMessage() . "</h2>";
-}   
+    // Set up configuration file and create database
+    $configFile = __DIR__ . '/model/dbconfig.ini';
+    try 
+    {
+        $teamDatabase = new Teams($configFile);
+    } 
+    catch ( Exception $error ) 
+    {
+        echo "<h2>" . $error->getMessage() . "</h2>";
+    }   
 
-echo json_encode($teamDatabase->getTeams());
+    // Encode the getTeams response as JSON and return it
+    $results = $teamDatabase->getTeams();
+    echo json_encode($results);
 
 ?>

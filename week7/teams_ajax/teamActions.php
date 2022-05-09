@@ -32,7 +32,7 @@ if ($contentType === "application/json")
     if ($action == "add") 
     {
         $id = $teamDatabase->addTeam ($decodedJSON['teamName'], $decodedJSON['division']);
-        echo json_encode($teamDatabase->getTeams());
+        echo json_encode($id);
     }
     else if ($action == "delete") 
     {
@@ -41,9 +41,10 @@ if ($contentType === "application/json")
     }
     else if ($action == "get") 
     {
-        $team = getTeam ($decodedJSON['id']);
+        $team = getTeam($decodedJSON['id']);
         echo json_encode($team);
-    } else 
+    } 
+    else 
     {
         echo json_encode($teamDatabase->getTeams());
     }

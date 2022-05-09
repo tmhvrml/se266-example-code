@@ -27,16 +27,25 @@ if ($contentType === "application/json")
   $decodedJSON = json_decode($content, true);
 
 
-  //If json_decode failed, the JSON is invalid.
-  if( is_array($decodedJSON)) {
-     // echo json_encode($decoded['team_name']);
-      $team_name = $decodedJSON['team_name'];
-      $division = $decodedJSON['division'];
-      $results = $teamDatabase->addTeam($team_name, $division);
-      echo json_encode($results);
-  } else {
-    // Send error back to user.
-  }
+    //If json_decode failed, the JSON is invalid.
+    if( is_array($decodedJSON)) {
+
+        // We can add the team to the database
+        $team_name = $decodedJSON['team_name'];
+        $division = $decodedJSON['division'];
+
+        // This function returns the ID field of the newly 
+        //  creasted record in the database
+        $results = $teamDatabase->addTeam($team_name, $division);
+
+        // We forward that ID to the caller waiting for a response
+        echo json_encode($results);
+
+    } 
+    else 
+    {
+      echo "Error";
+    }
 }
 
 ?>

@@ -7,34 +7,38 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <title>My Chart.js Chart</title>
+  
 </head>
 <body>
   <div class="container">
     <canvas id="myChart"></canvas>
   </div>
-
   <script>
-   // Bar chart
-  new Chart(document.getElementById("myChart"), {
-    type: 'bar',
-    data: {
-      labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
-      datasets: [
-        {
-          label: "Population (millions)",
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-          data: [2478,5267,734,784,433]
-        }
-      ]
-    },
-    options: {
-      legend: { display: false },
-      title: {
-        display: true,
-        text: 'Predicted world population (millions) in 2050'
-      }
-    }
-});
-  </script>
+    // Bar chart
+    myChart = new Chart(document.getElementById("myChart"), 
+    {
+      type: 'bar',
+      data: 
+      {
+        labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+        datasets: 
+        [ {
+           label: "Population (millions)",
+           backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+           data: [2478, 5267, 734, 784, 433]
+        } ]
+     }, // end data
+     options: 
+     {
+       legend: { display: false },
+       title: 
+       {
+         display: true,
+         text: 'Predicted world population (millions) in 2050'
+       }
+     } // end options
+ });
+ </script>
+
 </body>
 </html>
