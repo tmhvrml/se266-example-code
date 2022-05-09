@@ -15,10 +15,9 @@ class SchoolStats extends Schools
         $binds = array();               // bind array for query parameters
         $teamTable = $this->getDatabaseRef();   // Alias for database PDO
 
-
         $stmt = $teamTable->prepare("SELECT schoolState, COUNT(*) AS schoolCount from schools
                             GROUP BY schoolState
-                            ORDER BY COUNT(*) DESC LIMIT 20");
+                            ORDER BY COUNT(*) ASC LIMIT 20");
 
       
         if ($stmt->execute() && $stmt->rowCount() > 0) 
