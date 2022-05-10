@@ -29,4 +29,6 @@
     
     echo "<p>This is the json_encode of the array:</p>";
     echo json_encode ($people);
+
+   
 ?>
