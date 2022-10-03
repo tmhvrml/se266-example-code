@@ -1,4 +1,4 @@
-<?php   include '10functions.php';
+<?php   include_once '10functions.php';
 ?>
 <!DOCTYPE html>
 <html>
