@@ -32,13 +32,16 @@
             define("ROWS", 15);
             define("COLS", 8);
             
-            for($row = 1; $row <= ROWS; $row++):?>
-            <tr> 
-            <?php for($col = 1; $col <= COLS; $col++):?>
-                <td> <?php echo "($row, $col)"; ?> </td>
-            <?php endfor; ?>                
-            </tr>
-        <?php endfor; ?>
+            for($row = 1; $row <= ROWS; $row++)
+            { 
+                ?>
+                <tr> 
+                <?php for($col = 1; $col <= COLS; $col++):?>
+                    <td> <?php echo "($row, $col)"; ?> </td>
+                <?php endfor; ?>                
+                </tr>
+                <?php 
+            } // end for-loop ?>
         </table>
     </body>
 </html>
