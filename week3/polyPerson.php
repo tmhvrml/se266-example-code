@@ -1,7 +1,7 @@
 <?php
 
-include_once("./models/Student.php");
-include_once("./models/Worker.php");
+include_once("models/Student.php");
+include_once("models/Worker.php");
 
 function whoWeAre($listOfPeople)
 {

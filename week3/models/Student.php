@@ -1,6 +1,6 @@
 <?php
 
-include_once('./Person_v2.php');
+include_once('Person_v2.php');
 
 class Student extends Person 
 {
