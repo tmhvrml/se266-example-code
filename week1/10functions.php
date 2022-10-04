@@ -1,7 +1,8 @@
 
 <?php
 
-    function headsOrTails() {
+    function headsOrTails() 
+    {
         if (mt_rand(0,1) == 0) return "heads";
 
         return "tails";
