@@ -1,31 +1,5 @@
 <?php
-// This is a quick and dirty way to capture (and validate) form input
-
-    // This code runs everytine the page loads
-    if (isset($_POST['submitBtn'])) {
-        if (isset($_POST['adult'])) {
-            echo "You're an adult";
-        } else {
-            echo "You are NOT an adult";
-        }
-
-        echo "Form submitted<hr />";
-
-        $value = filter_input(INPUT_POST, 'val1', FILTER_VALIDATE_FLOAT);
-        echo "$value ****";
-
-        if (!is_numeric($value)) {
-             echo "You did not submit a number!";
-         }
-        
-        $state = filter_input (INPUT_POST, 'state');
-        
-      
-        echo $state;
-    } else {
-        echo "Initial load of form";
-    }
-    
+    include_once('./controllers/frmDemo02func.php');
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +11,7 @@
 </head>
 <body>
     <h1>Demo Forms</h1>
-    <form action="demoforms.php" method="post">
+    <form action="form_demo02.php" method="post">
         Age: <input type="text" name="val1" value="Whatever" />
         <input type="checkbox" value="Adult" name="adult" >Adult<br />
         <input type="radio" value="single" name="status">Single
