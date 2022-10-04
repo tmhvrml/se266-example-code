@@ -1,13 +1,14 @@
 <?php
     
     // This code runs everytime the page loads
-    $firstName = "Alex";
+    $firstName = "Alex"; // Default value
     if (isset($_POST['btnSubmit'])) {
         //var_dump ($_POST);
         $firstName = $_POST['firstName'];
         echo $_POST['firstName'];
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
