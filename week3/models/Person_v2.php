@@ -9,6 +9,7 @@ class Person
     private $first;
     private $last;
     private $myID;
+    
     private static $objectCount=0;
 
     public function __construct ($firstArg, $lastArg) 
