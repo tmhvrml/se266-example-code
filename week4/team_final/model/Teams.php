@@ -5,7 +5,7 @@
 // This class provides a wrapper for the database 
 // All methods work on the teams table
 
-class Teams
+class TeamDB
 {
     // This data field represents the database
     private $teamData;

@@ -7,7 +7,7 @@
     $configFile = __DIR__ . '/model/dbconfig.ini';
     try 
     {
-        $teamDatabase = new Teams($configFile);
+        $teamDatabase = new TeamDB($configFile);
     } 
     catch ( Exception $error ) 
     {
