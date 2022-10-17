@@ -1,6 +1,8 @@
 <?php
 // The code below runs everytime this file loads 
 
+include_once "models/Car.php";
+
 $carOne = new Car("Toyota Yaris");
 $carTwo = new Car("Honda Accord");
 
