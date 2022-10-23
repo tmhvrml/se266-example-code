@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/../week3/Car.php';
+include __DIR__ . '/../week3/models/Car.php';
 session_start();
 ?>
 
