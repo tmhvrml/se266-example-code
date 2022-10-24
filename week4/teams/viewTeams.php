@@ -1,25 +1,7 @@
 <?php
     
-    include_once __DIR__ . '/model/Teams.php';
-    include_once __DIR__ . '/include/functions.php';
+     include_once __DIR__ . '/controllers/viewController.php';
 
-    // Set up configuration file and create database
-    $configFile = __DIR__ . '/model/dbconfig.ini';
-    try 
-    {
-        $teamDatabase = new TeamDB($configFile);
-    } 
-    catch ( Exception $error ) 
-    {
-        echo "<h2>" . $error->getMessage() . "</h2>";
-    }   
-    // If POST, delete the requested team before listing all teams
-    if (isPostRequest()) {
-        $id = filter_input(INPUT_POST, 'teamId');
-        $teamDatabase->deleteTeam ($id);
-
-    }
-    $teamListing = $teamDatabase->getTeams();
     
 ?>
 <html lang="en">
@@ -51,7 +33,7 @@
         <?php foreach ($teamListing as $row): ?>
             <tr>
                 <td>
-                    <form action="view.php" method="post">
+                    <form action="viewTeams.php" method="post">
                         <input type="hidden" name="teamId" value="<?= $row['id']; ?>" />
                         <button class="btn glyphicon glyphicon-trash" type="submit"></button>
                         <?php echo $row['teamName']; ?>
