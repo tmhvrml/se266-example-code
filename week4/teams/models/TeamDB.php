@@ -26,9 +26,11 @@ class TeamDB
         if ($ini = parse_ini_file($configFile))
         {
             // Create PHP Database Object
-            $teamPDO = new PDO( "mysql:host=" . $ini['servername'] . 
-                                ";port=" . $ini['port'] . 
-                                ";dbname=" . $ini['dbname'], 
+            $connectionString = "mysql:host=" . $ini['servername'] . 
+            ";port=" . $ini['port'] . 
+            ";dbname=" . $ini['dbname'];
+
+            $teamPDO = new PDO( $connectionString, 
                                 $ini['username'], 
                                 $ini['password']);
 

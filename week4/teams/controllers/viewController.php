@@ -16,7 +16,8 @@
     // If POST, delete the requested team before listing all teams
     if (isPostRequest()) {
         $id = filter_input(INPUT_POST, 'teamId');
-        $teamDatabase->deleteTeam ($id);
+        // $id = $_POST['teamId'];
+        $teamDatabase->deleteTeam($id);
 
     }
     $teamListing = $teamDatabase->getTeams();
