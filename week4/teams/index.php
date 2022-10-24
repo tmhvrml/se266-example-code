@@ -1,3 +1,3 @@
 <?php
-  header('Location: view.php');  
+  header('Location: viewTeams.php');  
 ?>
