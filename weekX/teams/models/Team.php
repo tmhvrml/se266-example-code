@@ -3,13 +3,13 @@
 class Team
 {
 
-    private teamId;
-    private teamName;
-    private teamDivision;
+    private $id;
+    private $teamName;
+    private $division;
 
     public setTeamId($theId)
     {
-        $this->teamId = $theId;
+        $this->id = $theId;
     }
 
     public setTeamName($theName)
@@ -19,13 +19,13 @@ class Team
 
     public setTeamDivision($theDivison)
     {
-        $this->teamDivison = $theDivision;
+        $this->division = $theDivision;
     }
 
 
     public getTeamId()
     {
-        return $this->teamId;
+        return $this->id;
     }
 
     public getTeamName()
@@ -35,7 +35,7 @@ class Team
 
     public getTeamDivision()
     {
-        return $this->teamDivison;
+        return $this->division;
     }
 
 }
