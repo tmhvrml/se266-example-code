@@ -71,13 +71,13 @@ class TeamDB
         $teamTable = $this->teamData;   // Alias for database PDO
 
         // Preparing SQL query
-        $stmt = $teamTable->prepare("SELECT id, teamName, division FROM teams ORDER BY teamname"); 
+        $stmt = $teamTable->prepare("SELECT * FROM teams ORDER BY teamname"); 
         
         // Execute query and check to see if rows were returned
         if ( $stmt->execute() && $stmt->rowCount() > 0 ) 
         {
             // if successful, grab all rows
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);                 
+            $results = $stmt->fetchAll(PDO::FETCH_CLASS, "Team");                 
         }         
 
         // Return results to client
