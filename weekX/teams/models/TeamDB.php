@@ -206,7 +206,8 @@ class TeamDB
          if ( $stmt->execute() && $stmt->rowCount() > 0 ) 
          {
             // if successful, grab the first row returned
-            $results = $stmt->fetch(PDO::FETCH_ASSOC);                       
+            $results = $stmt->setFetchMode(PDO::FETCH_CLASS, "Team");
+            $results = $stmt->fetch();                       
         }
 
         // Return results to client

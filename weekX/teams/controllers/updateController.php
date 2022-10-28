@@ -23,8 +23,8 @@
       if ($action == "Update") 
       {
           $row = $teamDatabase->getTeam($id);
-          $teamName = $row['teamName'];
-          $division = $row['division'];
+          $teamName = $row->getTeamName();
+          $division = $row->getTeamDivision();
       } 
       //else it is Add and the user will enter team & dvision
       else 
@@ -45,11 +45,11 @@
 
       if ($action == "Add") 
       {
-          $result = $teamDatabase->addTeam ($teamName, $division);
+          $result = $teamDatabase->addTeam($teamName, $division);
       } 
       elseif ($action == "Update") 
       {
-          $result = $teamDatabase->updateTeam ($id, $teamName, $division);
+          $result = $teamDatabase->updateTeam($id, $teamName, $division);
       }
 
       // Redirect to team listing on view.php

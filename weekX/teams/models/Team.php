@@ -7,33 +7,33 @@ class Team
     private $teamName;
     private $division;
 
-    public setTeamId($theId)
+    public function setTeamId($theId)
     {
         $this->id = $theId;
     }
 
-    public setTeamName($theName)
+    public function setTeamName($theName)
     {
         $this->teamName = $theName;
     }
 
-    public setTeamDivision($theDivison)
+    public function setTeamDivision($theDivison)
     {
         $this->division = $theDivision;
     }
 
 
-    public getTeamId()
+    public function getTeamId()
     {
         return $this->id;
     }
 
-    public getTeamName()
+    public function getTeamName()
     {
         return $this->teamName;
     }
 
-    public getTeamDivision()
+    public function getTeamDivision()
     {
         return $this->division;
     }

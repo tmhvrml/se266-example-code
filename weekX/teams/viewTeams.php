@@ -34,13 +34,13 @@
             <tr>
                 <td>
                     <form action="viewTeams.php" method="post">
-                        <input type="hidden" name="teamId" value="<?= $row['id']; ?>" />
+                        <input type="hidden" name="teamId" value="<?= $row->getTeamId(); ?>" />
                         <button class="btn glyphicon glyphicon-trash" type="submit"></button>
-                        <?php echo $row['teamName']; ?>
+                        <?php echo $row->getTeamName(); ?>
                     </form>   
                 </td>
-                <td><?php echo $row['division']; ?></td> 
-                <td><a href="updateTeam.php?action=Update&teamId=<?= $row['id'] ?>">Update</a></td> 
+                <td><?php echo $row->getTeamDivision(); ?></td> 
+                <td><a href="updateTeam.php?action=Update&teamId=<?= $row->getTeamId() ?>">Update</a></td> 
                 
             </tr>
         <?php endforeach; ?>
