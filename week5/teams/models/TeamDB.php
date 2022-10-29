@@ -218,6 +218,17 @@ class TeamDB
     {
         return $this->teamData;
     }
+
+    // Destructor to clean up any memory allocation
+   public function __destruct() 
+   {
+       // Mark the PDO for deletion
+       $this->teamData = null;
+
+        // If we had a datafield that was a fileReference
+        // we should ensure the file is closed
+   }
+
  
 } // end class Teams
 ?>
