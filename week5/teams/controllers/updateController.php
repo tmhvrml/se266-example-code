@@ -22,9 +22,9 @@
       $id = filter_input(INPUT_GET, 'teamId', );
       if ($action == "Update") 
       {
-          $row = $teamDatabase->getTeam($id);
-          $teamName = $row->getTeamName();
-          $division = $row->getTeamDivision();
+          $currentTeam = $teamDatabase->getTeam($id);
+          $teamName = $currentTeam->getTeamName();
+          $division = $currentTeam->getTeamDivision();
       } 
       //else it is Add and the user will enter team & dvision
       else 

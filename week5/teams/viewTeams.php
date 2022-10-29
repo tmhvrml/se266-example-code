@@ -30,17 +30,17 @@
         </thead>
         <tbody>
       
-        <?php foreach ($teamListing as $row): ?>
+        <?php foreach ($teamListing as $currentTeam): ?>
             <tr>
                 <td>
                     <form action="viewTeams.php" method="post">
-                        <input type="hidden" name="teamId" value="<?= $row->getTeamId(); ?>" />
+                        <input type="hidden" name="teamId" value="<?= $currentTeam->getTeamId(); ?>" />
                         <button class="btn glyphicon glyphicon-trash" type="submit"></button>
-                        <?php echo $row->getTeamName(); ?>
+                        <?php echo $currentTeam->getTeamName(); ?>
                     </form>   
                 </td>
-                <td><?php echo $row->getTeamDivision(); ?></td> 
-                <td><a href="updateTeam.php?action=Update&teamId=<?= $row->getTeamId() ?>">Update</a></td> 
+                <td><?php echo $currentTeam->getTeamDivision(); ?></td> 
+                <td><a href="updateTeam.php?action=Update&teamId=<?= $currentTeam->getTeamId() ?>">Update</a></td> 
                 
             </tr>
         <?php endforeach; ?>
