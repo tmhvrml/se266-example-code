@@ -1,5 +1,6 @@
 <?php
 
+include_once "Team.php";
 //*****************************************************
 //
 // This class provides a wrapper for the database 
@@ -70,13 +71,13 @@ class TeamDB
         $teamTable = $this->teamData;   // Alias for database PDO
 
         // Preparing SQL query
-        $stmt = $teamTable->prepare("SELECT id, teamName, division FROM teams ORDER BY teamname"); 
+        $stmt = $teamTable->prepare("SELECT * FROM teams ORDER BY teamname"); 
         
         // Execute query and check to see if rows were returned
         if ( $stmt->execute() && $stmt->rowCount() > 0 ) 
         {
             // if successful, grab all rows
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);                 
+            $results = $stmt->fetchAll(PDO::FETCH_CLASS, "Team");                 
         }         
 
         // Return results to client
@@ -93,12 +94,12 @@ class TeamDB
         $teamTable = $this->teamData;   // Alias for database PDO
 
         // Preparing SQL query with parameters for team and division
-        $stmt = $teamTable->prepare("INSERT INTO teams SET teamName = :team, division = :division");
+        $stmt = $teamTable->prepare("INSERT INTO teams SET teamName = :teamParam, division = :divisionParam");
 
         // Bind query parameters to method parameter values
         $boundParams = array(
-            ":team" => $team,
-            ":division" => $division
+            ":teamParam" => $team,
+            ":divisionParam" => $division
         );       
         
          // Execute query and check to see if rows were returned 
@@ -121,11 +122,11 @@ class TeamDB
         $teamTable = $this->teamData;   // Alias for database PDO
 
         // Preparing SQL query with parameters for team and division
-        $stmt = $teamTable->prepare("INSERT INTO teams SET teamName = :team, division = :division");
+        $stmt = $teamTable->prepare("INSERT INTO teams SET teamName = :teamParam, division = :divisionParam");
 
         // Bind query parameters to method parameter values
-        $stmt->bindValue(':team', $team);
-        $stmt->bindValue(':division', $division);
+        $stmt->bindValue(':teamParam', $team);
+        $stmt->bindValue(':divisionParam', $division);
        
         // Execute query and check to see if rows were returned 
         // If so, the team was successfully added
@@ -148,12 +149,12 @@ class TeamDB
 
         // Preparing SQL query with parameters for team and division
         //    id is used to ensure we update correct record
-        $stmt = $teamTable->prepare("UPDATE teams SET teamName = :team, division = :division WHERE id=:id");
+        $stmt = $teamTable->prepare("UPDATE teams SET teamName = :teamParam, division = :divisionParam WHERE id=:idParam");
         
          // Bind query parameters to method parameter values
-        $stmt->bindValue(':id', $id);
-        $stmt->bindValue(':team', $team);
-        $stmt->bindValue(':division', $division);
+        $stmt->bindValue(':idParam', $id);
+        $stmt->bindValue(':teamParam', $team);
+        $stmt->bindValue(':divisionParam', $division);
 
         // Execute query and check to see if rows were returned 
         // If so, the team was successfully updated      
@@ -174,10 +175,10 @@ class TeamDB
 
         // Preparing SQL query 
         //    id is used to ensure we delete correct record
-        $stmt = $teamTable->prepare("DELETE FROM teams WHERE id=:id");
+        $stmt = $teamTable->prepare("DELETE FROM teams WHERE id=:idParam");
         
          // Bind query parameter to method parameter value
-        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':idParam', $id);
             
         // Execute query and check to see if rows were returned 
         // If so, the team was successfully deleted      
@@ -196,16 +197,17 @@ class TeamDB
 
         // Preparing SQL query 
         //    id is used to ensure we delete correct record
-        $stmt = $teamTable->prepare("SELECT id, teamName, division FROM teams WHERE id=:id");
+        $stmt = $teamTable->prepare("SELECT id, teamName, division FROM teams WHERE id=:idParam");
 
          // Bind query parameter to method parameter value
-         $stmt->bindValue(':id', $id);
+         $stmt->bindValue(':idParam', $id);
        
          // Execute query and check to see if rows were returned 
          if ( $stmt->execute() && $stmt->rowCount() > 0 ) 
          {
             // if successful, grab the first row returned
-            $results = $stmt->fetch(PDO::FETCH_ASSOC);                       
+            $results = $stmt->setFetchMode(PDO::FETCH_CLASS, "Team");
+            $results = $stmt->fetch();                       
         }
 
         // Return results to client
@@ -216,6 +218,17 @@ class TeamDB
     {
         return $this->teamData;
     }
+
+    // Destructor to clean up any memory allocation
+   public function __destruct() 
+   {
+       // Mark the PDO for deletion
+       $this->teamData = null;
+
+        // If we had a datafield that was a fileReference
+        // we should ensure the file is closed
+   }
+
  
 } // end class Teams
 ?>
