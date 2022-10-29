@@ -1,6 +1,5 @@
 <?php
 
-include_once "Team.php";
 //*****************************************************
 //
 // This class provides a wrapper for the database 
@@ -77,7 +76,7 @@ class TeamDB
         if ( $stmt->execute() && $stmt->rowCount() > 0 ) 
         {
             // if successful, grab all rows
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC, "Team");                 
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);                 
         }         
 
         // Return results to client
