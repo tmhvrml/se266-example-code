@@ -1,67 +1,10 @@
 <?php
 
     // Load helper functions (which also starts the session) then check if user is logged in
-    include_once __DIR__ . '/include/functions.php'; 
-    if (!isUserLoggedIn())
-    {
-        header ('Location: login.php');
-    }
+    include_once __DIR__ . '/controllers/listController.php'; 
+   // This loads HTML header and starts our session if it has not been started
+   include_once __DIR__ . "/controllers/header.php";
 
-   include_once __DIR__ . '/model/TeamSearcher.php';
-
-    // Set up configuration file and create database
-    $configFile = __DIR__ . '/model/dbconfig.ini';
-    try 
-    {
-        $teamDatabase = new TeamSearcher($configFile);
-    } 
-    catch ( Exception $error ) 
-    {
-        echo "<h2>" . $error->getMessage() . "</h2>";
-    }   
-    // If POST, delete the requested team before listing all teams
-    $teamListing = [];
-    if (isPostRequest()) 
-    {
-        if (isset($_POST["Search"]))
-        {
-            $teamName="";
-            $division="";
-            if ($_POST["fieldName"] == "teamName")
-            {
-                $teamName = $_POST['fieldValue'];
-            }
-            else
-            {
-                $division = $_POST['fieldValue'];
-            }
-            //echo "Team: " . $teamName . "   Division: " . $divison;
-            $teamListing = $teamDatabase->searchTeams($teamName, $division);
-        }
-        else
-        {
-        
-            $id = filter_input(INPUT_POST, 'teamId');
-            $teamDatabase->deleteTeam ($id);
-            $teamListing = $teamDatabase->getTeams();
-        }
-    }
-    else
-    {
-        $teamListing = $teamDatabase->getTeams();
-    }
-
-
-    // This is a quick sorting hack that does not use
-    // either the page form or a database query.
-    // It sorts based on the associative array keys.
-    $teams  = array_column($teamListing, 'teamName');
-    $division = array_column($teamListing, 'division');
-
-    array_multisort($division, SORT_ASC, $teams, SORT_ASC, $teamListing);
-
-// Preliminaries are done, load HTML page header
-    include_once __DIR__ . "/include/header.php";
 
 ?>
     <h2>Search for Team</h2>
@@ -111,9 +54,9 @@
         <?php foreach ($teamListing as $row): ?>
             <tr>
                 <td>
-                    <form action="teamListing.php" method="post">
+                    <form action="listTeams.php" method="post">
                         <input type="hidden" name="teamId" value="<?= $row['id']; ?>" />
-                        <button class="btn glyphicon glyphicon-trash" type="submit"></button>
+                        <button class="btn glyphicon glyphicon-trash" name="deleteTeam" type="submit"></button>
                         <?php echo $row['teamName']; ?>
                     </form>   
                 </td>

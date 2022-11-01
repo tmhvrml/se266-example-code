@@ -1,12 +1,14 @@
 <?php
 
 // Test to determine if this is a POST event
+// RETURNS: True if page load was result of POST, false otherwise
 function isPostRequest() 
 {
     return (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'POST' );
 }
 
 // Test to determine if this is a GET event
+// RETURNS: True if page load was result of GET with no fields, false otherwise
 function isGetRequest() 
 {
     return (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === 'GET' && !empty($_GET) );

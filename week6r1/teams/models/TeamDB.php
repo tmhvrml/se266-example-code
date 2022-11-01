@@ -5,7 +5,7 @@
 // This class provides a wrapper for the database 
 // All methods work on the teams table
 
-class Teams
+class TeamDB
 {
     // This data field represents the database
     private $teamData;
@@ -26,9 +26,11 @@ class Teams
         if ($ini = parse_ini_file($configFile))
         {
             // Create PHP Database Object
-            $teamPDO = new PDO( "mysql:host=" . $ini['servername'] . 
-                                ";port=" . $ini['port'] . 
-                                ";dbname=" . $ini['dbname'], 
+            $connectionString = "mysql:host=" . $ini['servername'] . 
+            ";port=" . $ini['port'] . 
+            ";dbname=" . $ini['dbname'];
+
+            $teamPDO = new PDO( $connectionString, 
                                 $ini['username'], 
                                 $ini['password']);
 
@@ -68,7 +70,7 @@ class Teams
         $teamTable = $this->teamData;   // Alias for database PDO
 
         // Preparing SQL query
-        $stmt = $teamTable->prepare("SELECT id, teamName, division FROM teams ORDER BY teamname"); 
+        $stmt = $teamTable->prepare("SELECT * FROM teams ORDER BY teamname"); 
         
         // Execute query and check to see if rows were returned
         if ( $stmt->execute() && $stmt->rowCount() > 0 ) 
@@ -91,12 +93,12 @@ class Teams
         $teamTable = $this->teamData;   // Alias for database PDO
 
         // Preparing SQL query with parameters for team and division
-        $stmt = $teamTable->prepare("INSERT INTO teams SET teamName = :team, division = :division");
+        $stmt = $teamTable->prepare("INSERT INTO teams SET teamName = :teamParam, division = :divisionParam");
 
         // Bind query parameters to method parameter values
         $boundParams = array(
-            ":team" => $team,
-            ":division" => $division
+            ":teamParam" => $team,
+            ":divisionParam" => $division
         );       
         
          // Execute query and check to see if rows were returned 
@@ -119,11 +121,11 @@ class Teams
         $teamTable = $this->teamData;   // Alias for database PDO
 
         // Preparing SQL query with parameters for team and division
-        $stmt = $teamTable->prepare("INSERT INTO teams SET teamName = :team, division = :division");
+        $stmt = $teamTable->prepare("INSERT INTO teams SET teamName = :teamParam, division = :divisionParam");
 
         // Bind query parameters to method parameter values
-        $stmt->bindValue(':team', $team);
-        $stmt->bindValue(':division', $division);
+        $stmt->bindValue(':teamParam', $team);
+        $stmt->bindValue(':divisionParam', $division);
        
         // Execute query and check to see if rows were returned 
         // If so, the team was successfully added
@@ -146,12 +148,12 @@ class Teams
 
         // Preparing SQL query with parameters for team and division
         //    id is used to ensure we update correct record
-        $stmt = $teamTable->prepare("UPDATE teams SET teamName = :team, division = :division WHERE id=:id");
+        $stmt = $teamTable->prepare("UPDATE teams SET teamName = :teamParam, division = :divisionParam WHERE id=:idParam");
         
          // Bind query parameters to method parameter values
-        $stmt->bindValue(':id', $id);
-        $stmt->bindValue(':team', $team);
-        $stmt->bindValue(':division', $division);
+        $stmt->bindValue(':idParam', $id);
+        $stmt->bindValue(':teamParam', $team);
+        $stmt->bindValue(':divisionParam', $division);
 
         // Execute query and check to see if rows were returned 
         // If so, the team was successfully updated      
@@ -164,7 +166,7 @@ class Teams
     //*****************************************************
     // Delete specified team from table
     // INPUT: id of team to delete
-    // RETURNS: True if delete is successful, false otherwise
+    // RETURNS: True if update is successful, false otherwise
     public function deleteTeam ($id) 
     {
         $deleteSucessful = false;       // Team not updated at this point
@@ -172,10 +174,10 @@ class Teams
 
         // Preparing SQL query 
         //    id is used to ensure we delete correct record
-        $stmt = $teamTable->prepare("DELETE FROM teams WHERE id=:id");
+        $stmt = $teamTable->prepare("DELETE FROM teams WHERE id=:idParam");
         
          // Bind query parameter to method parameter value
-        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':idParam', $id);
             
         // Execute query and check to see if rows were returned 
         // If so, the team was successfully deleted      
@@ -194,35 +196,37 @@ class Teams
 
         // Preparing SQL query 
         //    id is used to ensure we delete correct record
-        $stmt = $teamTable->prepare("SELECT id, teamName, division FROM teams WHERE id=:id");
+        $stmt = $teamTable->prepare("SELECT id, teamName, division FROM teams WHERE id=:idParam");
 
          // Bind query parameter to method parameter value
-         $stmt->bindValue(':id', $id);
+         $stmt->bindValue(':idParam', $id);
        
          // Execute query and check to see if rows were returned 
          if ( $stmt->execute() && $stmt->rowCount() > 0 ) 
          {
             // if successful, grab the first row returned
-            $results = $stmt->fetch(PDO::FETCH_ASSOC);                       
+            $results = $stmt->fetch();                       
         }
 
         // Return results to client
         return $results;
     }
 
-    // Special function accessible to derived classes
-    // Allows children to make database queries.
-    protected function getDatabaseRef()
+    public function getDatabaseRef()
     {
         return $this->teamData;
     }
 
     // Destructor to clean up any memory allocation
-    public function __destruct() 
-    {
-        // Mark the PDO for deletion
-        $this->teamData = null;
-    }
+   public function __destruct() 
+   {
+       // Mark the PDO for deletion
+       $this->teamData = null;
 
+        // If we had a datafield that was a fileReference
+        // we should ensure the file is closed
+   }
+
+ 
 } // end class Teams
 ?>
