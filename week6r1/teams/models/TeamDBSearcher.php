@@ -1,9 +1,9 @@
 <?php
 
-include_once __DIR__ . '/Teams.php'; 
+include_once __DIR__ . '/TeamDB.php'; 
 
 // We extend the teams class so we can take advantage of work done earlier
-class TeamSearcher extends Teams
+class TeamDBSearcher extends TeamDB
 {
 
     // Allows user to search for either team, division or both

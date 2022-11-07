@@ -22,7 +22,7 @@
       </div>
       <?php
         // We want to hide the Logout button if the user is not logged in
-        // That means we are on the Login page
+        // because that means we are on the Login page
         // Since the session should have been destroyed, we first check to see if isLoggedIn exists
         // It may exist if an already logged in user manually loads or reloads login.php 
         if (isUserLoggedIn()) 
