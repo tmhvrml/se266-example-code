@@ -31,8 +31,8 @@ class TeamSearcher extends Teams
             {
                 $sqlQuery .= " AND ";
             }
-            $sqlQuery .= "  teamName LIKE :team";
-            $binds['team'] = '%'.$team.'%';
+            $sqlQuery .= "  teamName LIKE :teamParam";
+            $binds['teamParam'] = '%'.$team.'%';
         }
     
         // If division is set, append team query and bind parameter
@@ -46,8 +46,8 @@ class TeamSearcher extends Teams
             {
                 $sqlQuery .= " AND ";
             }
-            $sqlQuery .= "  division LIKE :division";
-            $binds['division'] = '%'.$division.'%';
+            $sqlQuery .= "  division LIKE :divisionParam";
+            $binds['divisionParam'] = '%'.$division.'%';
         }
     
        
