@@ -212,7 +212,7 @@ class TeamDB
         return $results;
     }
 
-    public function getDatabaseRef()
+    protected function getDatabaseRef()
     {
         return $this->teamData;
     }
