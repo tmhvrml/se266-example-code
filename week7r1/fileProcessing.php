@@ -1,11 +1,12 @@
 <?php
 
-// Grabs a text file. Each line of the file
-// Is another row in the array.
+// Grabs a plain text file. 
+// Each line of the file is another row in the array.
 // This assumes the file "names.txt" is stored in the "upload" directory
 $names = file('upload/names.txt');
-echo $names[0]. "*** <br />";
-var_dump ($names); // shows the resulting array
+echo "<h3>This is an echo of the first line of names.txt followed by a var_dump of the file.</h3>";
+echo $names[0]. "*** <br />";    // shows first line of array
+var_dump ($names);               // shows the resulting array
 
 
 echo "<p> </p>";
@@ -13,6 +14,7 @@ echo "<p> </p>";
 // (as opposed to 't' text format)
 $nameFileRef = fopen ('upload/names.txt', 'rb');
 
+echo "<h3>This is a line by line echo of the file names.txt</h3>";
 // Loop until the end of the file
 while (!feof($nameFileRef)) 
 {
@@ -28,14 +30,15 @@ echo "<p> </p>";
 // First check if file exists (always do this!)
 if (!file_exists("upload/schools.csv")) 
 {
-   echo "<p>File does not exist</p>";
+   echo "<h3>File does not exist</h3>";
    exit;
 }
 
 // Open CSV file for reading
-$schoolFileRef = fopen ('upload/schools.csv', 'rb');
+$schoolFileRef = fopen('upload/schools.csv', 'rb');
 
 // only read MAX_SCHOOLS lines from file for testing
+echo "<h3>This is translation of the first 10 lines of the CSV file schools.csv</h3>";
 $currentLine = 0;
 while (!feof($schoolFileRef) && $currentLine < MAX_SCHOOLS )
  {

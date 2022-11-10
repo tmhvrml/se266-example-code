@@ -26,7 +26,7 @@ if (isset ($_FILES['fileToUpload']))
 ?>
 
 
-<form action="upload.php" method="post" enctype="multipart/form-data">
+<form action="uploadFile.php" method="post" enctype="multipart/form-data">
     <input type="file" name="fileToUpload">
     <input type="submit" value="Upload">
 </form> 
