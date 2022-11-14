@@ -22,6 +22,8 @@ if (isset ($_FILES['fileToUpload']))
 
     // Move the file from the temp locations to target location
     move_uploaded_file($tmpName, $targetFilename);
+
+    echo "<h2>File successfully uploaded! 😀</h2>";
 }
 ?>
 
@@ -30,12 +32,5 @@ if (isset ($_FILES['fileToUpload']))
     <input type="file" name="fileToUpload">
     <input type="submit" value="Upload">
 </form> 
-<?php 
-//  If $_FILES['fileToUpload'] is set, we were successful in uploading the file
-if (isset ($_FILES['fileToUpload'])) {
-    echo "<h2>File successfully uploaded! 😀</h2>";
-}
-
-?>
 
 
