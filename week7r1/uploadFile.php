@@ -13,13 +13,14 @@ if (isset ($_FILES['fileToUpload']))
     // Concatenate the environment's directory separator '/'
     // Then concatenate the upload directory set abiove
     $path = getcwd() . DIRECTORY_SEPARATOR . UPLOAD_DIRECTORY;
+    // $path = "./upload";
 
     // Concatenate the uploaded filename onto our the target path
     $targetFilename = $path . DIRECTORY_SEPARATOR . $_FILES['fileToUpload']['name'];
-
+    echo $targetFilename . "<br />";
     // Grab the tempprary name of the file as stored on server
     $tmpName = $_FILES['fileToUpload']['tmp_name'];
-
+echo $tmpName . "<br />";
     // Move the file from the temp locations to target location
     move_uploaded_file($tmpName, $targetFilename);
 

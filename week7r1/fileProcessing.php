@@ -12,7 +12,7 @@ var_dump ($names);               // shows the resulting array
 echo "<p> </p>";
 // Opens the file for reading 'r', in binary 'b' format
 // (as opposed to 't' text format)
-$nameFileRef = fopen ('upload/names.txt', 'rb');
+$nameFileRef = fopen('upload/names.txt', 'rb');
 
 echo "<h3>This is a line by line echo of the file names.txt</h3>";
 // Loop until the end of the file
