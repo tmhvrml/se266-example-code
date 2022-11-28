@@ -1,7 +1,9 @@
 <?php
 
 // Check to see if content type was set and trim leading/trailing spaces
-$contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+$contentType = isset($_SERVER["CONTENT_TYPE"]) 
+                        ? trim($_SERVER["CONTENT_TYPE"]) 
+                        : '';
 
 // Check to see if we were sent a JSON file
 if ($contentType === "application/json") 

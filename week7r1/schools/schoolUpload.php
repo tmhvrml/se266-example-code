@@ -24,7 +24,7 @@
         Please specify a file to upload and then be patient as the upload may take a while to process.
     </p>
 
-    <form action="upload.php" method="post" enctype="multipart/form-data">
+    <form action="schoolUpload.php" method="post" enctype="multipart/form-data">
 
         <input type="file" name="fileToUpload">
         <input type="submit" value="Upload">
