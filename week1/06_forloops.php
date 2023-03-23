@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <?php
 // Using constants instead of magic numbers is best.
-define("LOOP_MAX", 10);
+const LOOP_MAX = 10;
+
+define("LOOP_MIN", 0); // old way to define constants
+
 ?>
 <html>
     <head>
