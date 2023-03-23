@@ -11,7 +11,7 @@
      $myvar = 10; // int
      $myvar = true; //boolean
      $myvar = array(); // array
-     $myvar = 'hello'; //string
+     $myvar = 'hello'; //string again
 ?>
 <html>
     <head>

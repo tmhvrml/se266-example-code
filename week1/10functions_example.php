@@ -58,20 +58,18 @@
             <?php 
                 $count = 0;
                 $i = 0;
-                while ($count <= 20):
+                while ($count <= 20)
+                {
                     $i++;
-                    if (isPrime($i)):
-                        $count++;
-                        
-            ?>
-                    <li><?php echo $i; ?></li>
-            <?php
-                    endif;
-                endwhile;
-            ?>
-            </ul>
-
-
-            
+                    if (isPrime($i))
+                    {
+                        $count++;   
+                        ?>
+                        <li><?php echo $i; ?></li>
+                        <?php
+                    }
+                }
+                ?>
+            </ul>     
     </body>
 </html>

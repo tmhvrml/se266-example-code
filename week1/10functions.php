@@ -1,6 +1,5 @@
 
 <?php
-
     function headsOrTails() 
     {
         if (mt_rand(0,1) == 0) return "heads";
@@ -17,33 +16,39 @@
         // we only need to test until the square root of n
         $maxNumberToTest = sqrt($n);
         
-        for ($i=2; $i<=$maxNumberToTest; $i++) {
+        for ($i=2; $i<=$maxNumberToTest; $i++) 
+        {
             if ($n % $i == 0) return false; // n is divisible by i
         }
         return true;
     }// end isPrime
 
-    function getInterest ($balance, $apr) {
+    function getInterest ($balance, $apr) 
+    {
         return $balance * $apr /12 /100;
     }// end getInterest
     
     // get the maximum value of two numbers
-    function getMax ($x, $y) {
+    function getMax ($x, $y) 
+    {
         if ($x >= $y) return $x;
 
         return $y;
     }// end getMax
 
-    function printNumber () {
+    function printNumber () 
+    {
         echo "Print the variable a: $a";
     }// end printNumber
 
-    function printGlobalNumber () {
+    function printGlobalNumber () 
+    {
         global $a;
         echo "Print the variable a: $a<br />";
     }// end printGlobalNumber
 
-    function printLocalNumberAndTryToChangeIt() {
+    function printLocalNumberAndTryToChangeIt() 
+    {
         $a = 500;
         echo "Call printLocalNumberAndTryToChangeIt. The variable a: $a<br />";
     }// end printLocalNumberAndTryToChangeIt

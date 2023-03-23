@@ -36,9 +36,11 @@
             { 
                 ?>
                 <tr> 
-                <?php for($col = 1; $col <= COLS; $col++):?>
+                <?php for($col = 1; $col <= COLS; $col++)
+                {   ?>
                     <td> <?php echo "($row, $col)"; ?> </td>
-                <?php endfor; ?>                
+                    <?php 
+                } ?>                
                 </tr>
                 <?php 
             } // end for-loop ?>

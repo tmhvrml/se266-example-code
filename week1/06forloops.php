@@ -15,14 +15,16 @@ define("LOOP_MAX", 10);
         
         <h2>For loop with { and }</h2>
         <ul>   
-        <?php for ($index = 1; $index <= LOOP_MAX; $index++) { ?>
+        <?php for ($index = 1; $index <= LOOP_MAX; $index++) 
+        {   ?>
             <li><?php echo $index; ?> </li>    
-        <?php } ?>
+            <?php 
+        } ?>
         </ul> 
         
         <h2>For loop with : and endfor;</h2>
         <ul>
-        <?php for($index = 1; $index <= LOOP_MAX; $index++):?>
+        <?php for($index = 1; $index <= LOOP_MAX; $index++): ?>
             <li> <?php echo $index;?> </li>
         <?php endfor; ?>
         </ul>
@@ -30,7 +32,8 @@ define("LOOP_MAX", 10);
         <h2>No Separation of Concern on this one</h2>
         <?php
             echo "<ul>";
-            for ($index = 1; $index <= LOOP_MAX; $index++) {
+            for ($index = 1; $index <= LOOP_MAX; $index++) 
+            {
                 echo "<li>$index</li>";
             }
             echo "</ul>";

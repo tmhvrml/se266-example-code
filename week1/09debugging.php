@@ -14,7 +14,7 @@
         var_dump ($arrayTruth);
         echo "<h2>Using print_r</h2>";
         print_r ($arrayTruth);
-        echo "\tgot here\n"; 
+        echo nl2br( "\n \n \t got here \n" ); 
         //exit;// same as echo "got here"; exit;
         // This code will not execute
         echo "Hello, can you hear me?!!!";

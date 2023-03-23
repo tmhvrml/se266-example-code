@@ -21,11 +21,13 @@
         <?php endif; ?>
 
         <?php
-        if ($a === $b) {
+        if ($a === $b) 
+        {
             echo 'A === B';
         }
         echo '<br />';
-        if ($a == $value) {
+        if ($a == $value) 
+        {
             echo 'A == value';
         }
         ?>
@@ -38,13 +40,32 @@
         $expression = false;
         ?>
         
-        <?php if ($expression == true): ?>
+        <!-- Preferred PHP Syntax -->
+        <?php if ($expression == true)
+        {   ?>
             This will show if the expression is true.
-        <?php elseif ($expression == 10): ?>
+            <?php 
+        }
+        elseif ($expression == 10)
+        {   ?>
             This will show if the expression is 10.
-        <?php else: ?>
+            <?php 
+        }
+        else
+        {   ?>
             Otherwise this will show.
+            <?php  
+        } // end if/elseif/else ?>
+
+        <!-- Alternative PHP Syntax -->
+        <?php if ($expression == true): ?>
+            This will *also* show if the expression is true.
+        <?php elseif ($expression == 10): ?>
+            This will  *also* show if the expression is 10.
+        <?php else: ?>
+            Otherwise this will show  *also* .
         <?php endif; ?>
+
 
     </body>
 </html>

@@ -17,14 +17,12 @@
         </p>
 
         <p>
-            <?php echo "$myvar1 $myvar2"; ?>
+            <?php echo "$myvar1 $myvar2"; // Double Quotes ?>
         </p>
 
         <p>
-            <?php echo '$myvar1 $myvar2'; ?>
+            <?php echo '$myvar1 $myvar2'; // Single Quotes ?>
         </p>
-
-        
         
     </body>
 </html>

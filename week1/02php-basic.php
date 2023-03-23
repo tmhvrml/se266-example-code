@@ -7,14 +7,16 @@ $stuff = true;
 $stuff = 10;
 $stuff = array('rocks', 'is cool', 'stinks');
 
-// Here is where the code starts.
 
 $rand = rand(0, 2);
 $title = 'my page title ' . $stuff[$rand];
-if ( is_int($stuff) ) {
+if ( is_int($stuff) ) 
+{
     $title = 'my page title is 10';
-} else {
-    //$title = 'my page title';
+} 
+else 
+{
+    $title = 'my page title';
 }
 
 // Try to declare variables close to where they are used.
@@ -31,7 +33,8 @@ $myListLength = count($myList);
         <h1><?php echo $title; ?></h1>
         
         <ul>   
-        <?php for ($index = 0; $index < $myListLength; $index++){ ?>
+        <?php for ($index = 0; $index < $myListLength; $index++) 
+        { ?>
             <li><?php echo $myList[$index] ?> </li>    
         <?php } ?>
         </ul> 
