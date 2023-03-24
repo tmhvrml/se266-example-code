@@ -7,7 +7,7 @@
     <body>
         <h1>Concatenate Strings</h1>
         <?php
-        // Observer the output from each echo statement below
+        // Observe the output from each echo statement below
             $myvar1 = 'hello';
             $myvar2 = 'world';
         ?>
