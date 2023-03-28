@@ -61,8 +61,6 @@ echo count($myArray) . "<br />";
     </p>
 
 
-?>
-
 
 </ul>
 
