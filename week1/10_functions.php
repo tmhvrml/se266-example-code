@@ -1,10 +1,20 @@
 
 <?php
+
+/// Constant and variable declarations
+    const HEADS_VALUE = 0;
+    const TAIL_VALUE = 1;
+
     function headsOrTails() 
     {
-        if (mt_rand(0,1) == 0) return "heads";
 
-        return "tails";
+        $isHeads = (mt_rand(HEADS_VALUE,TAIL_VALUE) == HEADS_VALUE);
+        
+        return $isHeads ? "heads" : "tails";
+      
+        // if (mt_rand(0,1) == 0) return "heads";
+
+        // return "tails";
     } // end headsOrTails
 
     // return true for positive numbers that are prime
@@ -31,9 +41,15 @@
     // get the maximum value of two numbers
     function getMax ($x, $y) 
     {
-        if ($x >= $y) return $x;
 
-        return $y;
+        if ($x >= $y) 
+        {
+         return $x;
+        }
+        else
+        {
+         return $y;
+        }
     }// end getMax
 
     function printNumber () 

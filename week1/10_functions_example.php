@@ -1,4 +1,4 @@
-<?php   include_once '10_functions.php';
+<?php   require_once '10_functions.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +22,7 @@
             printGlobalNumber();
 
             printLocalNumberAndTryToChangeIt();
-            echo "Outside the function a is still $a. The local number did not change it!<br />";
+            echo "Outside the function a is still $a! The local number did not change it!<br />";
            
         ?>
             <h2>Test Heads or Tails</h2>
