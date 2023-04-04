@@ -1,5 +1,5 @@
 <?php
-    include_once('./controllers/frmDemo02func.php');
+    include_once './controllers/frmDemo02func.php';
 ?>
 
 <!DOCTYPE html>
