@@ -18,7 +18,7 @@
     <title>Test Forms</title>
 </head>
 <body>
-    <form method="post" action="test.php">
+    <form method="post" action="stickyField_demo.php">
         <label>First Name</label>
         <input type="text" name="firstName" value="<?= $firstName ?>" /> <!-- // -> $_POST['firstName'] -->
         <input type="submit" name="btnSubmit" /> <!-- // -> $_POST['btnSubmit'] -->

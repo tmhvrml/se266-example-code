@@ -1,6 +1,6 @@
 <?php
 
-    include_once 'form_utilities.php';
+    require_once 'form_utilities.php';
      // This code runs everytime the page is loaded.
     $allStates = ["Rhode Island", "Massachusetts", "Connecticut", "Maine", "New Hampshire", "Vermont"];
 

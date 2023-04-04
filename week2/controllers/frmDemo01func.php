@@ -1,6 +1,6 @@
 <?php
 
-include_once 'form_utilities.php';
+require_once 'form_utilities.php';
 
 // It is a good habit to define your functions and variables first:
 // This code only runs when called.
