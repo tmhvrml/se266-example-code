@@ -17,24 +17,27 @@
             <?php
                 // This loop selects the correct radio buytton to highlight
                 // based on the value in $state
-                foreach ($allStates as $thisState):
+                foreach ($allStates as $thisState)
+                {
             ?>
                   <?php
-                    if ($selectedState == $thisState):
+                    if ($selectedState == $thisState)
+                    {
                   ?>
                    <option selected>
                    <?php
-                        
-                    else:
+                    }    
+                    else
+                    {
                    ?>
                      <option>
                     <?php
-                        endif;
+                   } 
                     ?>
                         <?= $thisState ?>
                    </option>
             <?php    
-                endforeach;
+                } 
             ?>
             
             

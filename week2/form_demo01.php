@@ -47,7 +47,7 @@
                 <label>Number 1:</label>
             </div>
             <div>
-                <input type="text" name="number_1" value="<?php echo $number_1; ?>" />
+                <input type="text" name="number_1" value="<?= $number_1; ?>" />
             </div>
             <div class="label">
                 <label>Number 2:</label>
@@ -62,7 +62,8 @@
                 <input type="submit" name="add_numbers" value="Add Numbers" />
                 <p>
                     <?php
-                        if ($error == "") {
+                        if ($error == "") 
+                        {
                             echo "<p>The sum of these two numbers is " . addNumbers($number_1, $number_2) . ". </p>";
                         }
                     ?>
