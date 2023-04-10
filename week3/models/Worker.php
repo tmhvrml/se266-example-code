@@ -1,6 +1,6 @@
 <?php
 
-include_once('Person_v2.php');
+require_once('Person_v2.php');
 
 class Worker extends Person 
 {

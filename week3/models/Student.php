@@ -1,14 +1,15 @@
 <?php
 
-include_once('Person_v2.php');
+require_once('Person_v2.php');
 
 class Student extends Person 
 {
     private $studentSSN;
     private $gpa;
     
-    public function __construct($firstArg, $lastArg, $ssn, $gpa) {
-        $this->gpa = $gpa;
+    public function __construct($firstArg, $lastArg, $ssn, $student_gpa) 
+    {
+        $this->gpa = $student_gpa;
         $this->studentSSN = $ssn;
 
         parent::__construct($firstArg, $lastArg);

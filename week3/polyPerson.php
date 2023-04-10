@@ -5,7 +5,8 @@ include_once("models/Worker.php");
 
 function whoWeAre($listOfPeople)
 {
-	foreach ($listOfPeople as $human) {
+	foreach ($listOfPeople as $human) 
+    {
 		echo '<p>' . $human->getFullName() . '</p>';
 	}
 }
