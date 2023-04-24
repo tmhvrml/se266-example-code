@@ -1,7 +1,7 @@
 
 <?php
 
-$ini = parse_ini_file( __DIR__ . '/dbconfig.ini');
+$ini = parse_ini_file('dbconfig.ini');
 
 $db = new PDO(  "mysql:host=" . $ini['servername'] . 
                 ";port=" . $ini['port'] . 
