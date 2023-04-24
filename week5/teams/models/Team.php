@@ -17,7 +17,7 @@ class Team
         $this->teamName = $theName;
     }
 
-    public function setTeamDivision($theDivison)
+    public function setTeamDivision($theDivision)
     {
         $this->division = $theDivision;
     }
