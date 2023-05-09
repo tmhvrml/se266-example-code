@@ -1,5 +1,5 @@
 <?php
-
+    //  $_SESSION['site_root'] = __DIR__;
 // Grabs a plain text file. 
 // Each line of the file is another row in the array.
 // This assumes the file "names.txt" is stored in the "upload" directory

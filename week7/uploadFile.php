@@ -2,7 +2,7 @@
 
 // Set the upload directory.
 // In this case is it "upload"
-define ("UPLOAD_DIRECTORY", "upload");
+const UPLOAD_DIRECTORY = "upload";
 
 // If $_FILES['fileToUpload'] is set, we are in a POST 
 // and should upload the file
